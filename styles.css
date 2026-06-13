@@ -256,7 +256,8 @@ textarea {
 }
 
 .content-grid,
-.survival-grid {
+.survival-grid,
+.sync-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: 16px;
@@ -511,6 +512,98 @@ textarea {
   font-weight: 800;
 }
 
+.sync-badge {
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: #e8edf4;
+  color: var(--nav);
+  font-weight: 900;
+}
+
+.sync-badge.ready {
+  background: #fff1c7;
+  color: var(--amber);
+}
+
+.sync-badge.online {
+  background: #dff5ef;
+  color: var(--teal);
+}
+
+.helper-text {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.sync-code-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 120px;
+  gap: 10px;
+  margin: 16px 0 10px;
+}
+
+.sync-code-row input {
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.sync-code-row button,
+.ghost-light-button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  font-weight: 900;
+}
+
+.sync-code-row button {
+  background: var(--blue);
+  color: #fff;
+}
+
+.sync-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ghost-light-button {
+  padding: 0 12px;
+  background: #edf4fb;
+  color: var(--blue);
+}
+
+.sync-status {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f5f7fb;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.sync-status[data-status="online"] {
+  background: #dff5ef;
+  color: var(--teal);
+}
+
+.sync-status[data-status="working"] {
+  background: #fff1c7;
+  color: var(--amber);
+}
+
+.setup-list {
+  margin: 14px 0 0;
+  padding-left: 22px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.setup-list code {
+  color: var(--ink);
+  font-weight: 800;
+}
+
 @media (max-width: 1100px) {
   .app-shell {
     grid-template-columns: 1fr;
@@ -522,12 +615,13 @@ textarea {
   }
 
   .nav-tabs {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
   .metric-grid,
   .content-grid,
   .survival-grid,
+  .sync-grid,
   .cast-boards {
     grid-template-columns: 1fr 1fr;
   }
@@ -556,11 +650,13 @@ textarea {
   .metric-grid,
   .content-grid,
   .survival-grid,
+  .sync-grid,
   .cast-boards,
   .entry-form,
   .actor-form,
   .question-row,
-  .event-row {
+  .event-row,
+  .sync-code-row {
     grid-template-columns: 1fr;
   }
 

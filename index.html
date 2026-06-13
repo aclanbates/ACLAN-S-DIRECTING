@@ -23,6 +23,7 @@
           <button class="nav-tab" data-view="schedule" type="button">Schedule</button>
           <button class="nav-tab" data-view="casts" type="button">Casts</button>
           <button class="nav-tab" data-view="survival" type="button">Directors Survival</button>
+          <button class="nav-tab" data-view="sync" type="button">Sync</button>
         </nav>
 
         <div class="storage-tools">
@@ -179,6 +180,43 @@
             </article>
           </div>
         </section>
+
+        <section id="sync" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">MacBook, iPad, iPhone</p>
+              <h2>Sync with one private code</h2>
+            </div>
+            <div id="syncBadge" class="sync-badge">Not connected</div>
+          </div>
+
+          <div class="sync-grid">
+            <article class="panel">
+              <h3>Connect this device</h3>
+              <p class="helper-text">Create one code on your first device, then enter the same code on your other devices. No email login is shown; Firebase signs in anonymously in the background.</p>
+              <div class="sync-code-row">
+                <input id="syncCodeInput" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Example: Q7KM-42TX-9PDA" />
+                <button id="connectSync" type="button">Connect</button>
+              </div>
+              <div class="sync-actions">
+                <button id="createSyncCode" class="ghost-light-button" type="button">Create new code</button>
+                <button id="disconnectSync" class="ghost-light-button" type="button">Disconnect this device</button>
+              </div>
+              <div id="syncStatus" class="sync-status">Firebase is not configured yet.</div>
+            </article>
+
+            <article class="panel">
+              <h3>Firebase setup checklist</h3>
+              <ol class="setup-list">
+                <li>Create a Firebase project.</li>
+                <li>Enable Firestore Database.</li>
+                <li>Enable Anonymous sign-in under Authentication.</li>
+                <li>Copy your web app config into <code>firebase-config.js</code>.</li>
+                <li>Publish the Firestore rules from <code>firestore.rules</code>.</li>
+              </ol>
+            </article>
+          </div>
+        </section>
       </main>
     </div>
 
@@ -186,6 +224,7 @@
       <div class="empty-state">Nothing here yet.</div>
     </template>
 
-    <script src="app.js?v=2"></script>
+    <script src="firebase-config.js?v=1"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>

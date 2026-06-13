@@ -215,7 +215,20 @@ const defaultState = {
 };
 
 const STORAGE_KEY = "aclanWorksMusicalApp.v2";
+const SYNC_CODE_KEY = "aclanWorksMusicalApp.syncCode";
+const FIREBASE_SDK_VERSION = "10.12.5";
 let state = loadState();
+let syncState = {
+  app: null,
+  auth: null,
+  db: null,
+  docRef: null,
+  unsubscribe: null,
+  connected: false,
+  applyingRemote: false,
+  saveTimer: null,
+  code: localStorage.getItem(SYNC_CODE_KEY) || ""
+};
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -232,6 +245,7 @@ function loadState() {
 
 function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  scheduleRemoteSave();
   render();
 }
 
@@ -380,6 +394,7 @@ function setupForms() {
   $("#survivalNotes").addEventListener("input", (event) => {
     state.survivalNotes = event.currentTarget.value;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    scheduleRemoteSave();
   });
 
   $("#exportData").addEventListener("click", exportData);
@@ -388,6 +403,19 @@ function setupForms() {
     if (!confirm("Reset all app data saved in this browser?")) return;
     state = structuredClone(defaultState);
     saveState();
+  });
+
+  $("#createSyncCode").addEventListener("click", () => {
+    const code = generateSyncCode();
+    $("#syncCodeInput").value = code;
+    connectSync(code);
+  });
+  $("#connectSync").addEventListener("click", () => {
+    connectSync($("#syncCodeInput").value);
+  });
+  $("#disconnectSync").addEventListener("click", disconnectSync);
+  $("#syncCodeInput").addEventListener("input", (event) => {
+    event.currentTarget.value = formatSyncCode(event.currentTarget.value);
   });
 }
 
@@ -446,6 +474,7 @@ function renderChecklist() {
 function updateChecklist(key, field, value) {
   state.checklist[key] = { ...(state.checklist[key] || {}), [field]: value };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  scheduleRemoteSave();
   renderOverview();
 }
 
@@ -576,10 +605,12 @@ function renderOverview() {
 
 function render() {
   $("#survivalNotes").value = state.survivalNotes || "";
+  $("#syncCodeInput").value = syncState.code || "";
   renderOverview();
   renderChecklist();
   renderSchedule();
   renderCasts();
+  renderSync();
 }
 
 function exportData() {
@@ -608,6 +639,166 @@ function importData(event) {
   event.currentTarget.value = "";
 }
 
+function hasFirebaseConfig() {
+  const config = window.ACLAN_FIREBASE_CONFIG;
+  return Boolean(config?.apiKey && config?.projectId && config?.appId);
+}
+
+async function loadFirebase() {
+  if (!window.ACLAN_FIREBASE_CONFIG) {
+    await import(`./firebase-config.js?v=${Date.now()}`);
+  }
+  if (!hasFirebaseConfig()) {
+    setSyncStatus("Firebase is not configured yet. Add your project settings to firebase-config.js.", "offline");
+    return false;
+  }
+  if (syncState.db) return true;
+
+  setSyncStatus("Loading Firebase...", "working");
+  try {
+    const appModule = await import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-app.js`);
+    const authModule = await import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-auth.js`);
+    const firestoreModule = await import(`https://www.gstatic.com/firebasejs/${FIREBASE_SDK_VERSION}/firebase-firestore.js`);
+
+    syncState.firebase = { ...appModule, ...authModule, ...firestoreModule };
+    syncState.app = appModule.initializeApp(window.ACLAN_FIREBASE_CONFIG);
+    syncState.auth = authModule.getAuth(syncState.app);
+    syncState.db = firestoreModule.getFirestore(syncState.app);
+    await authModule.signInAnonymously(syncState.auth);
+    return true;
+  } catch (error) {
+    setSyncStatus(`Firebase could not start: ${error.message}`, "offline");
+    return false;
+  }
+}
+
+async function connectSync(rawCode) {
+  const code = formatSyncCode(rawCode);
+  if (!isValidSyncCode(code)) {
+    setSyncStatus("Enter a code in this format: Q7KM-42TX-9PDA.", "offline");
+    return;
+  }
+  if (!(await loadFirebase())) return;
+
+  if (syncState.unsubscribe) syncState.unsubscribe();
+  const fb = syncState.firebase;
+  syncState.code = code;
+  syncState.connected = false;
+  localStorage.setItem(SYNC_CODE_KEY, code);
+  $("#syncCodeInput").value = code;
+  setSyncStatus("Connecting to sync room...", "working");
+
+  syncState.docRef = fb.doc(syncState.db, "syncRooms", code);
+  const snapshot = await fb.getDoc(syncState.docRef);
+  if (!snapshot.exists()) {
+    await writeRemoteState();
+  } else {
+    const remoteState = snapshot.data()?.data;
+    if (remoteState && hasLocalData() && !confirm("This sync code already has data. Replace this device's local data with the synced version?")) {
+      await writeRemoteState();
+    } else if (remoteState) {
+      applyRemoteState(remoteState);
+    }
+  }
+
+  syncState.unsubscribe = fb.onSnapshot(syncState.docRef, (docSnap) => {
+    if (!docSnap.exists()) return;
+    const remoteState = docSnap.data()?.data;
+    if (remoteState) applyRemoteState(remoteState);
+    setSyncStatus(`Connected with code ${syncState.code}. Changes sync automatically.`, "online");
+  }, (error) => {
+    setSyncStatus(`Sync stopped: ${error.message}`, "offline");
+  });
+  syncState.connected = true;
+  setSyncStatus(`Connected with code ${syncState.code}. Changes sync automatically.`, "online");
+  renderSync();
+}
+
+function disconnectSync() {
+  if (syncState.unsubscribe) syncState.unsubscribe();
+  syncState.unsubscribe = null;
+  syncState.docRef = null;
+  syncState.connected = false;
+  syncState.code = "";
+  localStorage.removeItem(SYNC_CODE_KEY);
+  setSyncStatus("Disconnected on this device. Local data is still saved here.", "offline");
+  renderSync();
+}
+
+function applyRemoteState(remoteState) {
+  syncState.applyingRemote = true;
+  state = { ...structuredClone(defaultState), ...remoteState };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  syncState.applyingRemote = false;
+  render();
+}
+
+function scheduleRemoteSave() {
+  if (!syncState.connected || !syncState.docRef || syncState.applyingRemote) return;
+  clearTimeout(syncState.saveTimer);
+  syncState.saveTimer = setTimeout(writeRemoteState, 450);
+}
+
+async function writeRemoteState() {
+  if (!syncState.docRef || !syncState.firebase) return;
+  const fb = syncState.firebase;
+  await fb.setDoc(syncState.docRef, {
+    data: state,
+    updatedAt: fb.serverTimestamp(),
+    updatedAtMs: Date.now(),
+    version: 1
+  }, { merge: true });
+}
+
+function renderSync() {
+  const configured = hasFirebaseConfig();
+  const badge = $("#syncBadge");
+  if (!badge) return;
+  badge.textContent = syncState.connected ? "Sync connected" : configured ? "Ready to connect" : "Needs Firebase config";
+  badge.className = `sync-badge ${syncState.connected ? "online" : configured ? "ready" : ""}`;
+  if (!$("#syncStatus").textContent) {
+    setSyncStatus(configured ? "Firebase config found. Create or enter a sync code." : "Firebase is not configured yet.", configured ? "working" : "offline");
+  }
+}
+
+function setSyncStatus(message, status) {
+  const statusNode = $("#syncStatus");
+  const badge = $("#syncBadge");
+  if (statusNode) {
+    statusNode.textContent = message;
+    statusNode.dataset.status = status;
+  }
+  if (badge) {
+    badge.textContent = status === "online" ? "Sync connected" : status === "working" ? "Sync ready" : "Not connected";
+    badge.className = `sync-badge ${status === "online" ? "online" : status === "working" ? "ready" : ""}`;
+  }
+}
+
+function generateSyncCode() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes, (byte) => chars[byte % chars.length])
+    .join("")
+    .replace(/(.{4})(?=.)/g, "$1-");
+}
+
+function formatSyncCode(value) {
+  return String(value)
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "")
+    .slice(0, 12)
+    .replace(/(.{4})(?=.)/g, "$1-");
+}
+
+function isValidSyncCode(code) {
+  return /^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code);
+}
+
+function hasLocalData() {
+  return Boolean(Object.keys(state.checklist).length || state.events.length || state.actors.length || state.survivalNotes);
+}
+
 function emptyNode() {
   return $("#emptyTemplate").content.firstElementChild.cloneNode(true);
 }
@@ -628,3 +819,4 @@ function escapeAttribute(value) {
 setupNavigation();
 setupForms();
 render();
+if (syncState.code) connectSync(syncState.code);
