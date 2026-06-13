@@ -284,9 +284,37 @@ textarea {
 .stack-list,
 .checklist-sections,
 .schedule-list,
-.cast-boards {
+.cast-boards,
+.card-grid,
+.readiness-grid,
+.survival-field-grid,
+.creative-grid,
+.daily-grid,
+.field-stack {
   display: grid;
   gap: 12px;
+}
+
+.daily-grid {
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.7fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.card-grid,
+.creative-grid,
+.survival-field-grid,
+.readiness-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field-stack label,
+.work-card label,
+.readiness-card label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
 }
 
 .empty-state {
@@ -407,6 +435,17 @@ textarea {
   grid-template-columns: 1fr 1fr 160px 150px 110px;
 }
 
+.scene-form,
+.note-form,
+.decision-form,
+.run-form {
+  grid-template-columns: 1fr 1fr 160px 1fr 110px;
+}
+
+.problem-form {
+  grid-template-columns: 1fr 190px 130px 150px 150px 1fr 110px;
+}
+
 .entry-form button {
   background: var(--blue);
   color: #fff;
@@ -479,6 +518,87 @@ textarea {
 .actor-card strong {
   display: block;
   margin-bottom: 4px;
+}
+
+.actor-count-button {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  border-radius: 6px;
+  background: #eef6ff;
+  color: var(--blue);
+  font-weight: 900;
+  text-align: left;
+  padding: 9px 11px;
+}
+
+.actor-count-button span {
+  float: right;
+  min-width: 34px;
+  text-align: center;
+  border-radius: 999px;
+  background: #dff5ef;
+  color: var(--teal);
+}
+
+.work-card,
+.readiness-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.work-card p {
+  margin: 0;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+}
+
+.card-topline span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.problem-critical {
+  border-color: var(--warning);
+  background: var(--warning-soft);
+  animation: blink-alert 0.9s infinite;
+}
+
+.ready-card {
+  border-color: #8bd8c4;
+  background: #f0fbf8;
+}
+
+.inline-check {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink) !important;
+}
+
+.inline-check input {
+  width: 20px;
+  min-height: 20px;
 }
 
 .progress-track {
@@ -615,19 +735,29 @@ textarea {
   }
 
   .nav-tabs {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 
   .metric-grid,
   .content-grid,
   .survival-grid,
   .sync-grid,
+  .daily-grid,
+  .card-grid,
+  .creative-grid,
+  .survival-field-grid,
+  .readiness-grid,
   .cast-boards {
     grid-template-columns: 1fr 1fr;
   }
 
   .entry-form,
   .actor-form,
+  .scene-form,
+  .note-form,
+  .problem-form,
+  .decision-form,
+  .run-form,
   .question-row,
   .event-row {
     grid-template-columns: 1fr 1fr;
@@ -651,9 +781,19 @@ textarea {
   .content-grid,
   .survival-grid,
   .sync-grid,
+  .daily-grid,
+  .card-grid,
+  .creative-grid,
+  .survival-field-grid,
+  .readiness-grid,
   .cast-boards,
   .entry-form,
   .actor-form,
+  .scene-form,
+  .note-form,
+  .problem-form,
+  .decision-form,
+  .run-form,
   .question-row,
   .event-row,
   .sync-code-row {

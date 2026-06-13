@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aclan's Works | Musical Project Control</title>
-    <link rel="stylesheet" href="styles.css?v=2" />
+    <link rel="stylesheet" href="styles.css?v=4" />
   </head>
   <body>
     <div class="app-shell">
@@ -19,9 +19,17 @@
 
         <nav class="nav-tabs" aria-label="Main sections">
           <button class="nav-tab active" data-view="overview" type="button">Overview</button>
+          <button class="nav-tab" data-view="daily" type="button">Daily Desk</button>
           <button class="nav-tab" data-view="checklist" type="button">Checklist</button>
+          <button class="nav-tab" data-view="scenes" type="button">Scenes/Songs</button>
+          <button class="nav-tab" data-view="notes" type="button">Notes</button>
+          <button class="nav-tab" data-view="problems" type="button">Problems</button>
+          <button class="nav-tab" data-view="creative" type="button">Creative</button>
           <button class="nav-tab" data-view="schedule" type="button">Schedule</button>
           <button class="nav-tab" data-view="casts" type="button">Casts</button>
+          <button class="nav-tab" data-view="tech" type="button">Tech</button>
+          <button class="nav-tab" data-view="decisions" type="button">Decisions</button>
+          <button class="nav-tab" data-view="run" type="button">Run</button>
           <button class="nav-tab" data-view="survival" type="button">Directors Survival</button>
           <button class="nav-tab" data-view="sync" type="button">Sync</button>
         </nav>
@@ -60,7 +68,7 @@
               <strong id="castMetric">0</strong>
             </article>
             <article class="metric">
-              <span>Departments watched</span>
+              <span>1.1 work items</span>
               <strong id="departmentMetric">0</strong>
             </article>
           </div>
@@ -96,6 +104,127 @@
             </div>
           </div>
           <div id="checklistSections" class="checklist-sections"></div>
+        </section>
+
+        <section id="daily" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Today only</p>
+              <h2>Director's Daily Desk</h2>
+            </div>
+          </div>
+
+          <div class="daily-grid">
+            <article class="panel">
+              <h3>Today</h3>
+              <div class="field-stack">
+                <label>Date <input id="dailyDate" type="date" /></label>
+                <label>Rehearsal goal <textarea id="dailyGoal" placeholder="What must be better by the end of today?"></textarea></label>
+                <label>Scenes / songs <textarea id="dailyScenes" placeholder="What is being worked today?"></textarea></label>
+                <label>Urgent problems <textarea id="dailyUrgent" placeholder="What cannot wait?"></textarea></label>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>Today Calls</h3>
+              <div id="todayCalls" class="stack-list"></div>
+            </article>
+            <article class="panel">
+              <h3>Notes to Give</h3>
+              <div class="field-stack">
+                <label>Notes not yet given <textarea id="dailyNotes" placeholder="Keep this focused and usable in the room."></textarea></label>
+                <label>Decisions waiting <textarea id="dailyDecisions" placeholder="What needs approval or a final answer?"></textarea></label>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="scenes" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Scene and song pages</p>
+              <h2>Breakdown by story unit</h2>
+            </div>
+          </div>
+
+          <form id="sceneForm" class="entry-form scene-form">
+            <input name="title" placeholder="Scene or song title" required />
+            <input name="characters" placeholder="Characters / roles" />
+            <select name="status">
+              <option value="Not started">Not started</option>
+              <option value="Blocking">Blocking</option>
+              <option value="Music">Music</option>
+              <option value="Choreo">Choreo</option>
+              <option value="Polishing">Polishing</option>
+              <option value="Ready for tech">Ready for tech</option>
+            </select>
+            <input name="purpose" placeholder="Dramatic purpose" />
+            <button type="submit">Add</button>
+          </form>
+          <div id="sceneList" class="card-grid"></div>
+        </section>
+
+        <section id="notes" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Rehearsal notes</p>
+              <h2>Notes to give, track, and protect</h2>
+            </div>
+          </div>
+
+          <form id="noteForm" class="entry-form note-form">
+            <select name="type">
+              <option>Actor</option>
+              <option>Scene</option>
+              <option>Music</option>
+              <option>Choreo</option>
+              <option>Tech</option>
+              <option>Private</option>
+            </select>
+            <input name="target" placeholder="Actor / scene / department" />
+            <input name="text" placeholder="Note" required />
+            <select name="status">
+              <option value="Not given">Not given</option>
+              <option value="Given">Given</option>
+              <option value="Watching">Watching</option>
+            </select>
+            <button type="submit">Add</button>
+          </form>
+          <div id="noteList" class="card-grid"></div>
+        </section>
+
+        <section id="problems" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Open risks</p>
+              <h2>Problem tracker</h2>
+            </div>
+          </div>
+
+          <form id="problemForm" class="entry-form problem-form">
+            <input name="title" placeholder="Problem" required />
+            <select name="department"></select>
+            <select name="severity">
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="normal">Normal</option>
+            </select>
+            <input name="owner" placeholder="Owner" />
+            <input name="deadline" type="date" />
+            <input name="solution" placeholder="Suggested solution" />
+            <button type="submit">Add</button>
+          </form>
+          <div id="problemList" class="card-grid"></div>
+        </section>
+
+        <section id="creative" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Creative section</p>
+              <h2>Vision board</h2>
+            </div>
+          </div>
+
+          <div id="creativeFields" class="creative-grid"></div>
         </section>
 
         <section id="schedule" class="view">
@@ -153,6 +282,59 @@
           <div id="castBoards" class="cast-boards"></div>
         </section>
 
+        <section id="tech" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Ready for tech?</p>
+              <h2>Tech readiness</h2>
+            </div>
+          </div>
+          <div id="techList" class="readiness-grid"></div>
+        </section>
+
+        <section id="decisions" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Prevent confusion</p>
+              <h2>Decision log</h2>
+            </div>
+          </div>
+
+          <form id="decisionForm" class="entry-form decision-form">
+            <input name="decision" placeholder="Decision" required />
+            <input name="approvedBy" placeholder="Approved by" />
+            <input name="affects" placeholder="Affects" />
+            <input name="date" type="date" />
+            <button type="submit">Add</button>
+          </form>
+          <div id="decisionList" class="card-grid"></div>
+        </section>
+
+        <section id="run" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">After opening</p>
+              <h2>Performance run maintenance</h2>
+            </div>
+          </div>
+
+          <form id="runForm" class="entry-form run-form">
+            <input name="date" type="date" />
+            <select name="type">
+              <option>Brush-up need</option>
+              <option>Actor energy</option>
+              <option>Vocal health</option>
+              <option>Timing drift</option>
+              <option>Prop/costume wear</option>
+              <option>Audience response</option>
+              <option>Post-show note</option>
+            </select>
+            <input name="note" placeholder="Run note" required />
+            <button type="submit">Add</button>
+          </form>
+          <div id="runList" class="card-grid"></div>
+        </section>
+
         <section id="survival" class="view">
           <div class="topbar">
             <div>
@@ -163,7 +345,7 @@
 
           <div class="survival-grid">
             <article class="panel">
-              <h3>Future modules</h3>
+              <h3>Survival modules</h3>
               <div class="survival-tags">
                 <span>Actor problems</span>
                 <span>Set design</span>
@@ -175,10 +357,11 @@
               </div>
             </article>
             <article class="panel">
-              <h3>Notes parking lot</h3>
+              <h3>General survival notes</h3>
               <textarea id="survivalNotes" placeholder="Save future Directors Survival material here."></textarea>
             </article>
           </div>
+          <div id="survivalFields" class="survival-field-grid"></div>
         </section>
 
         <section id="sync" class="view">
@@ -225,6 +408,6 @@
     </template>
 
     <script src="firebase-config.js?v=1"></script>
-    <script src="app.js?v=3"></script>
+    <script src="app.js?v=4"></script>
   </body>
 </html>

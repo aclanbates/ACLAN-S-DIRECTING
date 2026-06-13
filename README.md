@@ -2,6 +2,19 @@
 
 Static directing dashboard with optional Firebase sync.
 
+## Upgrade 1.1 Sections
+
+- Director's Daily Desk
+- Scene / Song Breakdown
+- Rehearsal Notes System
+- Problem Tracker
+- Creative Vision Board
+- Actor pages with rehearsal click counts
+- Tech Readiness
+- Decision Log
+- Performance Run Maintenance
+- Directors Survival
+
 ## Firebase Sync Setup
 
 1. In Firebase Console, create or open your project.

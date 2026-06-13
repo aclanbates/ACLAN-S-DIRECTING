@@ -207,11 +207,60 @@ const checklistSource = [
   }
 ];
 
+const creativePrompts = [
+  ["coreConcept", "Core concept", "What is the one sentence everyone must understand?"],
+  ["visualWorld", "Visual world", "Realism, stylization, color, period, texture."],
+  ["emotionalTemperature", "Emotional temperature", "What should the audience feel, and when?"],
+  ["movementLanguage", "Movement language", "How bodies move in this production."],
+  ["soundWorld", "Sound world", "Atmosphere, rhythm, silence, transitions."],
+  ["references", "References", "Images, films, paintings, historical links, memories."],
+  ["nonNegotiables", "Must never lose", "The soul of the production and what cannot be betrayed."]
+];
+
+const techReadinessItems = [
+  "Set ready",
+  "Props ready",
+  "Costumes ready",
+  "Sound ready",
+  "Lights ready",
+  "Scene changes ready",
+  "Safety ready",
+  "Emergency plans ready"
+];
+
+const survivalPrompts = [
+  ["actorConflict", "Actor conflict", "What is happening, what calms it, what must not be said?"],
+  ["designerConflict", "Designer conflict", "What is the disagreement and what decision path is fair?"],
+  ["scriptProblem", "Script problem", "Where does the script resist the production?"],
+  ["managementPressure", "Management pressure", "What pressure is coming from producers, venue, time, or money?"],
+  ["replacementEmergency", "Emergency replacement", "Who can step in, what must be taught first, what can be simplified?"],
+  ["badRehearsalDay", "Bad rehearsal day", "What needs repair before the room loses trust?"],
+  ["morale", "Loss of morale", "What will restore energy, clarity, and seriousness?"],
+  ["sayDontSay", "What to say / not say", "Language that helps, language that will damage the room."],
+  ["calmActions", "Calm action suggestions", "The next practical thing to do."]
+];
+
 const defaultState = {
   checklist: {},
   events: [],
   actors: [],
-  survivalNotes: ""
+  survivalNotes: "",
+  dailyDesk: {
+    date: new Date().toISOString().slice(0, 10),
+    goal: "",
+    scenes: "",
+    urgent: "",
+    notes: "",
+    decisions: ""
+  },
+  scenes: [],
+  notes: [],
+  problems: [],
+  creative: {},
+  techReadiness: {},
+  decisions: [],
+  runMaintenance: [],
+  survival: {}
 };
 
 const STORAGE_KEY = "aclanWorksMusicalApp.v2";
@@ -337,6 +386,15 @@ function getAlerts() {
     }
   });
 
+  state.problems
+    .filter((problem) => problem.status !== "Solved" && problem.severity === "critical")
+    .forEach((problem) => {
+      alerts.push({
+        title: `Critical problem: ${problem.title}`,
+        body: `${problem.department}${problem.owner ? ` · owner: ${problem.owner}` : ""}`
+      });
+    });
+
   return alerts;
 }
 
@@ -349,13 +407,33 @@ function setupNavigation() {
   });
 }
 
+function setupDailyDesk() {
+  const fields = {
+    dailyDate: "date",
+    dailyGoal: "goal",
+    dailyScenes: "scenes",
+    dailyUrgent: "urgent",
+    dailyNotes: "notes",
+    dailyDecisions: "decisions"
+  };
+  Object.entries(fields).forEach(([id, key]) => {
+    const field = $(`#${id}`);
+    field.addEventListener("input", (event) => {
+      state.dailyDesk[key] = event.currentTarget.value;
+      saveState();
+    });
+  });
+}
+
 function setupForms() {
   const departmentOptions = departments.map((dept) => `<option value="${dept}">${dept}</option>`).join("");
   $("#departmentFilter").innerHTML = `<option value="">All departments</option>${departmentOptions}`;
   $("#scheduleForm select[name='department']").innerHTML = departmentOptions;
+  $("#problemForm select[name='department']").innerHTML = departmentOptions;
 
   $("#checklistSearch").addEventListener("input", renderChecklist);
   $("#departmentFilter").addEventListener("change", renderChecklist);
+  setupDailyDesk();
 
   $("#scheduleForm").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -384,10 +462,88 @@ function setupForms() {
       name: data.name.trim(),
       role: data.role.trim(),
       tier: data.tier,
-      targetDays: Number(data.targetDays || 0)
+      targetDays: Number(data.targetDays || 0),
+      rehearsalCount: 0
     });
     event.currentTarget.reset();
     $("#actorForm input[name='targetDays']").value = "8";
+    saveState();
+  });
+
+  $("#sceneForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    state.scenes.push({
+      id: crypto.randomUUID(),
+      title: data.title.trim(),
+      characters: data.characters.trim(),
+      status: data.status,
+      purpose: data.purpose.trim(),
+      needs: "",
+      problems: "",
+      notes: "",
+      readyForTech: data.status === "Ready for tech"
+    });
+    event.currentTarget.reset();
+    saveState();
+  });
+
+  $("#noteForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    state.notes.push({
+      id: crypto.randomUUID(),
+      type: data.type,
+      target: data.target.trim(),
+      text: data.text.trim(),
+      status: data.status,
+      created: new Date().toISOString().slice(0, 10)
+    });
+    event.currentTarget.reset();
+    saveState();
+  });
+
+  $("#problemForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    state.problems.push({
+      id: crypto.randomUUID(),
+      title: data.title.trim(),
+      department: data.department,
+      severity: data.severity,
+      owner: data.owner.trim(),
+      deadline: data.deadline,
+      solution: data.solution.trim(),
+      status: "Open"
+    });
+    event.currentTarget.reset();
+    saveState();
+  });
+
+  $("#decisionForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    state.decisions.push({
+      id: crypto.randomUUID(),
+      decision: data.decision.trim(),
+      approvedBy: data.approvedBy.trim(),
+      affects: data.affects.trim(),
+      date: data.date || new Date().toISOString().slice(0, 10)
+    });
+    event.currentTarget.reset();
+    saveState();
+  });
+
+  $("#runForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+    state.runMaintenance.push({
+      id: crypto.randomUUID(),
+      date: data.date || new Date().toISOString().slice(0, 10),
+      type: data.type,
+      note: data.note.trim()
+    });
+    event.currentTarget.reset();
     saveState();
   });
 
@@ -531,15 +687,25 @@ function renderCasts() {
       const worked = actorWorkDays(actor.id);
       const target = Number(actor.targetDays || 0);
       const pct = target ? Math.min(100, Math.round((worked / target) * 100)) : 100;
+      const counted = Number(actor.rehearsalCount || 0);
       const card = document.createElement("article");
       card.className = `actor-card ${worked < target ? "under-target" : ""}`;
       card.innerHTML = `
-        <strong>${escapeHtml(actor.name)}</strong>
+        <button class="actor-count-button" type="button">${escapeHtml(actor.name)} <span>${counted}</span></button>
         <div class="actor-meta">${escapeHtml(actor.role)}</div>
         <div class="progress-track"><div class="progress-bar" style="width:${pct}%"></div></div>
-        <div class="actor-meta">${worked}/${target} scheduled work days</div>
+        <div class="actor-meta">${worked}/${target} scheduled work days · ${counted} rehearsals counted</div>
+        <button class="ghost-light-button decrement-button" type="button">Undo count</button>
         <button class="remove-button" type="button">Remove</button>
       `;
+      $(".actor-count-button", card).addEventListener("click", () => {
+        actor.rehearsalCount = Number(actor.rehearsalCount || 0) + 1;
+        saveState();
+      });
+      $(".decrement-button", card).addEventListener("click", () => {
+        actor.rehearsalCount = Math.max(0, Number(actor.rehearsalCount || 0) - 1);
+        saveState();
+      });
       $(".remove-button", card).addEventListener("click", () => {
         state.actors = state.actors.filter((item) => item.id !== actor.id);
         state.events = state.events.map((event) => (event.actorId === actor.id ? { ...event, actorId: "" } : event));
@@ -552,6 +718,229 @@ function renderCasts() {
   });
 }
 
+function renderDailyDesk() {
+  $("#dailyDate").value = state.dailyDesk.date || new Date().toISOString().slice(0, 10);
+  $("#dailyGoal").value = state.dailyDesk.goal || "";
+  $("#dailyScenes").value = state.dailyDesk.scenes || "";
+  $("#dailyUrgent").value = state.dailyDesk.urgent || "";
+  $("#dailyNotes").value = state.dailyDesk.notes || "";
+  $("#dailyDecisions").value = state.dailyDesk.decisions || "";
+
+  const today = state.dailyDesk.date;
+  const root = $("#todayCalls");
+  root.innerHTML = "";
+  state.events
+    .filter((event) => today && event.start <= today && today <= event.end)
+    .forEach((event) => {
+      const item = document.createElement("div");
+      item.className = "deadline-item";
+      item.innerHTML = `<strong>${escapeHtml(event.title)}</strong><span>${escapeHtml(event.department)}</span><div>${event.start} to ${event.end}</div>`;
+      root.append(item);
+    });
+  if (!root.children.length) root.append(emptyNode());
+}
+
+function renderScenes() {
+  const root = $("#sceneList");
+  root.innerHTML = "";
+  state.scenes.forEach((scene) => {
+    const card = document.createElement("article");
+    card.className = `work-card ${scene.readyForTech ? "ready-card" : ""}`;
+    card.innerHTML = `
+      <div class="card-topline">
+        <h3>${escapeHtml(scene.title)}</h3>
+        <span>${escapeHtml(scene.status)}</span>
+      </div>
+      <div class="actor-meta">${escapeHtml(scene.characters || "No characters listed")}</div>
+      <p>${escapeHtml(scene.purpose || "No dramatic purpose yet.")}</p>
+      <label>Department needs <textarea data-field="needs">${escapeHtml(scene.needs || "")}</textarea></label>
+      <label>Problems <textarea data-field="problems">${escapeHtml(scene.problems || "")}</textarea></label>
+      <label>Director notes <textarea data-field="notes">${escapeHtml(scene.notes || "")}</textarea></label>
+      <label class="inline-check"><input type="checkbox" ${scene.readyForTech ? "checked" : ""} /> Ready for tech</label>
+      <button class="remove-button" type="button">Remove</button>
+    `;
+    $$("[data-field]", card).forEach((field) => {
+      field.addEventListener("input", (event) => {
+        scene[event.currentTarget.dataset.field] = event.currentTarget.value;
+        saveState();
+      });
+    });
+    $("input[type='checkbox']", card).addEventListener("change", (event) => {
+      scene.readyForTech = event.currentTarget.checked;
+      scene.status = event.currentTarget.checked ? "Ready for tech" : scene.status === "Ready for tech" ? "Polishing" : scene.status;
+      saveState();
+    });
+    $(".remove-button", card).addEventListener("click", () => removeById("scenes", scene.id));
+    root.append(card);
+  });
+  if (!root.children.length) root.append(emptyNode());
+}
+
+function renderNotes() {
+  const root = $("#noteList");
+  root.innerHTML = "";
+  state.notes.forEach((note) => {
+    const card = document.createElement("article");
+    card.className = "work-card";
+    card.innerHTML = `
+      <div class="card-topline">
+        <h3>${escapeHtml(note.type)} note</h3>
+        <span>${escapeHtml(note.status)}</span>
+      </div>
+      <div class="actor-meta">${escapeHtml(note.target || "No target")} · ${escapeHtml(note.created || "")}</div>
+      <p>${escapeHtml(note.text)}</p>
+      <div class="card-actions">
+        <button class="ghost-light-button" data-status="Given" type="button">Mark given</button>
+        <button class="ghost-light-button" data-status="Watching" type="button">Watching</button>
+        <button class="remove-button" type="button">Remove</button>
+      </div>
+    `;
+    $$("[data-status]", card).forEach((button) => {
+      button.addEventListener("click", () => {
+        note.status = button.dataset.status;
+        saveState();
+      });
+    });
+    $(".remove-button", card).addEventListener("click", () => removeById("notes", note.id));
+    root.append(card);
+  });
+  if (!root.children.length) root.append(emptyNode());
+}
+
+function renderProblems() {
+  const root = $("#problemList");
+  root.innerHTML = "";
+  state.problems.forEach((problem) => {
+    const card = document.createElement("article");
+    card.className = `work-card ${problem.severity === "critical" && problem.status !== "Solved" ? "problem-critical" : ""}`;
+    card.innerHTML = `
+      <div class="card-topline">
+        <h3>${escapeHtml(problem.title)}</h3>
+        <span class="importance ${problem.severity}">${escapeHtml(problem.severity)}</span>
+      </div>
+      <div class="actor-meta">${escapeHtml(problem.department)} · ${escapeHtml(problem.owner || "No owner")} · ${escapeHtml(problem.deadline || "No deadline")}</div>
+      <p>${escapeHtml(problem.solution || "No suggested solution yet.")}</p>
+      <div class="card-actions">
+        <button class="ghost-light-button" data-status="Open" type="button">Open</button>
+        <button class="ghost-light-button" data-status="Watching" type="button">Watching</button>
+        <button class="ghost-light-button" data-status="Solved" type="button">Solved</button>
+        <button class="remove-button" type="button">Remove</button>
+      </div>
+    `;
+    $$("[data-status]", card).forEach((button) => {
+      button.addEventListener("click", () => {
+        problem.status = button.dataset.status;
+        saveState();
+      });
+    });
+    $(".remove-button", card).addEventListener("click", () => removeById("problems", problem.id));
+    root.append(card);
+  });
+  if (!root.children.length) root.append(emptyNode());
+}
+
+function renderCreative() {
+  const root = $("#creativeFields");
+  root.innerHTML = "";
+  creativePrompts.forEach(([key, title, placeholder]) => {
+    const card = document.createElement("article");
+    card.className = "panel";
+    card.innerHTML = `<h3>${title}</h3><textarea placeholder="${escapeAttribute(placeholder)}">${escapeHtml(state.creative[key] || "")}</textarea>`;
+    $("textarea", card).addEventListener("input", (event) => {
+      state.creative[key] = event.currentTarget.value;
+      saveState();
+    });
+    root.append(card);
+  });
+}
+
+function renderTechReadiness() {
+  const root = $("#techList");
+  root.innerHTML = "";
+  techReadinessItems.forEach((item) => {
+    const saved = state.techReadiness[item] || {};
+    const card = document.createElement("article");
+    card.className = `readiness-card ${saved.ready ? "ready-card" : ""}`;
+    card.innerHTML = `
+      <label class="inline-check"><input type="checkbox" ${saved.ready ? "checked" : ""} /> ${escapeHtml(item)}</label>
+      <textarea placeholder="Notes, missing pieces, owner, deadline">${escapeHtml(saved.notes || "")}</textarea>
+    `;
+    $("input", card).addEventListener("change", (event) => {
+      state.techReadiness[item] = { ...saved, ready: event.currentTarget.checked };
+      saveState();
+    });
+    $("textarea", card).addEventListener("input", (event) => {
+      state.techReadiness[item] = { ...(state.techReadiness[item] || {}), notes: event.currentTarget.value };
+      saveState();
+    });
+    root.append(card);
+  });
+}
+
+function renderDecisions() {
+  const root = $("#decisionList");
+  root.innerHTML = "";
+  state.decisions
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    .forEach((decision) => {
+      const card = document.createElement("article");
+      card.className = "work-card";
+      card.innerHTML = `
+        <div class="card-topline">
+          <h3>${escapeHtml(decision.decision)}</h3>
+          <span>${escapeHtml(decision.date || "")}</span>
+        </div>
+        <div class="actor-meta">Approved by ${escapeHtml(decision.approvedBy || "not named")} · affects ${escapeHtml(decision.affects || "not listed")}</div>
+        <button class="remove-button" type="button">Remove</button>
+      `;
+      $(".remove-button", card).addEventListener("click", () => removeById("decisions", decision.id));
+      root.append(card);
+    });
+  if (!root.children.length) root.append(emptyNode());
+}
+
+function renderRunMaintenance() {
+  const root = $("#runList");
+  root.innerHTML = "";
+  state.runMaintenance
+    .sort((a, b) => String(b.date).localeCompare(String(a.date)))
+    .forEach((item) => {
+      const card = document.createElement("article");
+      card.className = "work-card";
+      card.innerHTML = `
+        <div class="card-topline">
+          <h3>${escapeHtml(item.type)}</h3>
+          <span>${escapeHtml(item.date)}</span>
+        </div>
+        <p>${escapeHtml(item.note)}</p>
+        <button class="remove-button" type="button">Remove</button>
+      `;
+      $(".remove-button", card).addEventListener("click", () => removeById("runMaintenance", item.id));
+      root.append(card);
+    });
+  if (!root.children.length) root.append(emptyNode());
+}
+
+function renderSurvivalFields() {
+  const root = $("#survivalFields");
+  root.innerHTML = "";
+  survivalPrompts.forEach(([key, title, placeholder]) => {
+    const card = document.createElement("article");
+    card.className = "panel";
+    card.innerHTML = `<h3>${title}</h3><textarea placeholder="${escapeAttribute(placeholder)}">${escapeHtml(state.survival[key] || "")}</textarea>`;
+    $("textarea", card).addEventListener("input", (event) => {
+      state.survival[key] = event.currentTarget.value;
+      saveState();
+    });
+    root.append(card);
+  });
+}
+
+function removeById(collection, id) {
+  state[collection] = state[collection].filter((item) => item.id !== id);
+  saveState();
+}
+
 function renderOverview() {
   const totalQuestions = checklistSource.reduce((sum, section) => sum + section.questions.length, 0);
   const completed = Object.values(state.checklist).filter((item) => item.done).length;
@@ -561,7 +950,7 @@ function renderOverview() {
   $("#completionMetric").textContent = `${completion}%`;
   $("#eventMetric").textContent = state.events.length;
   $("#castMetric").textContent = state.actors.length;
-  $("#departmentMetric").textContent = new Set(state.events.map((event) => event.department)).size || departments.length;
+  $("#departmentMetric").textContent = state.scenes.length + state.problems.length + state.notes.length;
 
   const badge = $("#alertBadge");
   badge.hidden = !alerts.length;
@@ -607,9 +996,18 @@ function render() {
   $("#survivalNotes").value = state.survivalNotes || "";
   $("#syncCodeInput").value = syncState.code || "";
   renderOverview();
+  renderDailyDesk();
   renderChecklist();
+  renderScenes();
+  renderNotes();
+  renderProblems();
+  renderCreative();
   renderSchedule();
   renderCasts();
+  renderTechReadiness();
+  renderDecisions();
+  renderRunMaintenance();
+  renderSurvivalFields();
   renderSync();
 }
 
