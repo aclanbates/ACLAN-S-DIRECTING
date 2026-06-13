@@ -1166,9 +1166,19 @@ function getAlerts() {
 function setupNavigation() {
   $$(".nav-tab").forEach((button) => {
     button.addEventListener("click", () => {
-      $$(".nav-tab").forEach((item) => item.classList.toggle("active", item === button));
-      $$(".view").forEach((view) => view.classList.toggle("active-view", view.id === button.dataset.view));
+      showView(button.dataset.view);
     });
+  });
+}
+
+function showView(viewId) {
+  $$(".nav-tab").forEach((item) => item.classList.toggle("active", item.dataset.view === viewId));
+  $$(".view").forEach((view) => view.classList.toggle("active-view", view.id === viewId));
+  const activeView = $(`#${viewId}`);
+  if (!activeView) return;
+  requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    activeView.scrollIntoView({ block: "start", inline: "nearest", behavior: "smooth" });
   });
 }
 
@@ -1770,8 +1780,7 @@ function renderCommandCenter() {
     item.textContent = entry.title;
     item.addEventListener("click", () => {
       showProblemAnswer(entry);
-      $$(".nav-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === "solver"));
-      $$(".view").forEach((view) => view.classList.toggle("active-view", view.id === "solver"));
+      showView("solver");
     });
     answerRoot.append(item);
   });
