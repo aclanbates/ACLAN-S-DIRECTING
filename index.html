@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aclan's Works | Musical Project Control</title>
+    <link rel="stylesheet" href="styles.css?v=2" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <img src="assets/source-preview.jpg" alt="Source Pages document preview" />
+          <div>
+            <p class="eyebrow">Aclan's Works</p>
+            <h1>Musical Project Control</h1>
+          </div>
+        </div>
+
+        <nav class="nav-tabs" aria-label="Main sections">
+          <button class="nav-tab active" data-view="overview" type="button">Overview</button>
+          <button class="nav-tab" data-view="checklist" type="button">Checklist</button>
+          <button class="nav-tab" data-view="schedule" type="button">Schedule</button>
+          <button class="nav-tab" data-view="casts" type="button">Casts</button>
+          <button class="nav-tab" data-view="survival" type="button">Directors Survival</button>
+        </nav>
+
+        <div class="storage-tools">
+          <button id="exportData" class="ghost-button" type="button">Export</button>
+          <label class="ghost-button file-button">
+            Import
+            <input id="importData" type="file" accept="application/json" />
+          </label>
+          <button id="resetData" class="danger-button" type="button">Reset</button>
+        </div>
+      </aside>
+
+      <main>
+        <section id="overview" class="view active-view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Production dashboard</p>
+              <h2>Head-to-toe readiness</h2>
+            </div>
+            <div id="alertBadge" class="alert-badge" hidden>0 active alerts</div>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric">
+              <span>Checklist complete</span>
+              <strong id="completionMetric">0%</strong>
+            </article>
+            <article class="metric">
+              <span>Scheduled calls</span>
+              <strong id="eventMetric">0</strong>
+            </article>
+            <article class="metric">
+              <span>Cast members</span>
+              <strong id="castMetric">0</strong>
+            </article>
+            <article class="metric">
+              <span>Departments watched</span>
+              <strong id="departmentMetric">0</strong>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Alerts</h3>
+                <span id="alertCountLabel">Schedule is clear</span>
+              </div>
+              <div id="alertsList" class="alerts-list"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Next Deadlines</h3>
+                <span>Checklist owners and due dates</span>
+              </div>
+              <div id="deadlineList" class="stack-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="checklist" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">From the Pages document</p>
+              <h2>Fill-out production checklist</h2>
+            </div>
+            <div class="toolbar">
+              <input id="checklistSearch" type="search" placeholder="Search questions" />
+              <select id="departmentFilter" aria-label="Filter by department"></select>
+            </div>
+          </div>
+          <div id="checklistSections" class="checklist-sections"></div>
+        </section>
+
+        <section id="schedule" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Clash monitor</p>
+              <h2>Department and actor schedule</h2>
+            </div>
+          </div>
+
+          <form id="scheduleForm" class="entry-form">
+            <input name="title" placeholder="Call title" required />
+            <select name="department" required></select>
+            <input name="start" type="date" required />
+            <input name="end" type="date" required />
+            <input name="minPrep" type="number" min="0" value="1" aria-label="Minimum days" />
+            <select name="importance" aria-label="Importance">
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="normal" selected>Normal</option>
+            </select>
+            <select name="castTier" aria-label="Cast tier">
+              <option value="">No cast tier</option>
+              <option value="first">First cast</option>
+              <option value="second">Second cast</option>
+              <option value="third">Third cast</option>
+            </select>
+            <select name="actorId" aria-label="Actor"></select>
+            <button type="submit">Add call</button>
+          </form>
+
+          <div id="scheduleList" class="schedule-list"></div>
+        </section>
+
+        <section id="casts" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">First, second, and third casts</p>
+              <h2>Actor workload and coverage</h2>
+            </div>
+          </div>
+
+          <form id="actorForm" class="entry-form actor-form">
+            <input name="name" placeholder="Actor name" required />
+            <input name="role" placeholder="Role" required />
+            <select name="tier" required>
+              <option value="first">First cast</option>
+              <option value="second">Second cast</option>
+              <option value="third">Third cast</option>
+            </select>
+            <input name="targetDays" type="number" min="0" value="8" aria-label="Target work days" />
+            <button type="submit">Add actor</button>
+          </form>
+
+          <div id="castBoards" class="cast-boards"></div>
+        </section>
+
+        <section id="survival" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Reserved expansion</p>
+              <h2>Directors Survival App</h2>
+            </div>
+          </div>
+
+          <div class="survival-grid">
+            <article class="panel">
+              <h3>Future modules</h3>
+              <div class="survival-tags">
+                <span>Actor problems</span>
+                <span>Set design</span>
+                <span>Designers</span>
+                <span>Script</span>
+                <span>Management</span>
+                <span>Suggestions</span>
+                <span>Careful treatment notes</span>
+              </div>
+            </article>
+            <article class="panel">
+              <h3>Notes parking lot</h3>
+              <textarea id="survivalNotes" placeholder="Save future Directors Survival material here."></textarea>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="emptyTemplate">
+      <div class="empty-state">Nothing here yet.</div>
+    </template>
+
+    <script src="app.js?v=2"></script>
+  </body>
+</html>
