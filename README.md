@@ -29,6 +29,17 @@ The app pre-fills a production starter pack based on the provided West Side Stor
 
 The starter pack uses production summaries and directing analysis rather than copying dialogue or lyrics.
 
+## Upgrade 2
+
+Adds a Story Beats tab with Blake Snyder's 15 Save the Cat beats mapped to West Side Story as precise dramatic turning points. Each beat includes:
+
+- The turning point
+- The script moment
+- Why it matters
+- Directing focus
+- A rehearsal note field
+- A checkbox for whether the turn is clear in rehearsal
+
 ## Firebase Sync Setup
 
 1. In Firebase Console, create or open your project.

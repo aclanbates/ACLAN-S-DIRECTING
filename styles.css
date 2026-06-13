@@ -307,6 +307,15 @@ textarea {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.beat-list {
+  display: grid;
+  gap: 14px;
+}
+
+.beat-intro {
+  margin-bottom: 14px;
+}
+
 .field-stack label,
 .work-card label,
 .readiness-card label {
@@ -542,7 +551,8 @@ textarea {
 }
 
 .work-card,
-.readiness-card {
+.readiness-card,
+.beat-card {
   display: grid;
   gap: 10px;
   padding: 14px;
@@ -550,6 +560,41 @@ textarea {
   border: 1px solid var(--line);
   border-radius: 8px;
   box-shadow: var(--shadow);
+}
+
+.beat-card {
+  grid-template-columns: 54px minmax(0, 1fr);
+  align-items: start;
+}
+
+.beat-number {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 900;
+}
+
+.beat-content {
+  display: grid;
+  gap: 10px;
+}
+
+.beat-content strong {
+  color: var(--blue);
+  line-height: 1.35;
+}
+
+.beat-content p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.beat-content b {
+  color: var(--ink);
 }
 
 .work-card p {
@@ -759,7 +804,8 @@ textarea {
   .decision-form,
   .run-form,
   .question-row,
-  .event-row {
+  .event-row,
+  .beat-card {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -796,7 +842,8 @@ textarea {
   .run-form,
   .question-row,
   .event-row,
-  .sync-code-row {
+  .sync-code-row,
+  .beat-card {
     grid-template-columns: 1fr;
   }
 

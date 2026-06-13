@@ -513,6 +513,117 @@ const westSideStoryStarterPack = {
   ]
 };
 
+const westSideStorySaveTheCatUpgrade = {
+  metaKey: "westSideStorySaveTheCatV1",
+  beats: [
+    {
+      beat: "Opening Image",
+      turningPoint: "The neighborhood belongs to rival youth groups before any spoken explanation can soften it.",
+      scriptMoment: "Act I Prologue - the Jets and Sharks claim, test, and violate street territory until police authority interrupts.",
+      whyItMatters: "This is the production's first contract with the audience: the story is physical, tribal, rhythmic, and already unsafe. The opening image must show a city where belonging has become territorial combat.",
+      directingFocus: "Stage the first minutes as readable social geography. Every shove, entrance, and retreat should tell us who owns space, who is losing it, and why the street itself is the prize."
+    },
+    {
+      beat: "Theme Stated",
+      turningPoint: "The musical asks whether loyalty to a group can survive love, and whether love can survive inherited hatred.",
+      scriptMoment: "Early gang scenes and Tony's separation from the Jets make the central question visible before Tony meets Maria.",
+      whyItMatters: "The theme is not abstract; it is a rehearsal rule. Every scene should test belonging versus freedom, group identity versus individual choice, revenge versus love.",
+      directingFocus: "Ask actors to locate the sentence underneath each scene: 'Who am I loyal to right now, and what will that loyalty cost?'"
+    },
+    {
+      beat: "Set-Up",
+      turningPoint: "The audience learns the rules of the Jets, the Sharks, police pressure, Doc's adult concern, and Tony's distance from gang life.",
+      scriptMoment: "Prologue, Jet Song, Tony/Riff yard scene, and Bridal Shop establish the social worlds before the gym.",
+      whyItMatters: "The set-up must make the later tragedy feel inevitable but not predetermined. We need to understand every pressure system before love enters it.",
+      directingFocus: "Keep the factions specific. Jets, Sharks, adults, women, and lovers must each have a different rhythm, status code, and survival strategy."
+    },
+    {
+      beat: "Catalyst",
+      turningPoint: "Tony and Maria see each other at the gym and the story changes direction instantly.",
+      scriptMoment: "Dance at the Gym / Meeting Scene.",
+      whyItMatters: "This is the inciting incident. Before it, the story is gang conflict; after it, the conflict becomes personal, romantic, and impossible to contain.",
+      directingFocus: "Make the room fall away without stopping the room. The audience must believe that one glance interrupts an entire social machine."
+    },
+    {
+      beat: "Debate",
+      turningPoint: "The lovers test whether this impossible connection can become real while the gangs move toward the war council.",
+      scriptMoment: "Maria, Balcony Scene, America, and the lead-in to the drugstore.",
+      whyItMatters: "The question is: can they cross the line and still survive the world that drew it? The debate should feel urgent, not leisurely.",
+      directingFocus: "Keep Tony and Maria's hope active against practical obstacles: family, gang identity, ethnicity, time, and physical separation."
+    },
+    {
+      beat: "Break into Two",
+      turningPoint: "Tony and Maria choose love as an action, not a feeling, and the plot moves into a new world of secret commitment.",
+      scriptMoment: "Balcony/Tonight and the decision that Tony must try to stop the rumble.",
+      whyItMatters: "The story crosses from attraction into consequence. Tony now acts because of Maria; Maria now risks obedience and family expectation because of Tony.",
+      directingFocus: "Treat the balcony as a vow of direction: after this, every private choice has public consequences."
+    },
+    {
+      beat: "B Story",
+      turningPoint: "The love story becomes the emotional argument against the gang story.",
+      scriptMoment: "Tony/Maria scenes, especially Balcony and One Hand One Heart; Anita/Maria later becomes the mature counterpoint.",
+      whyItMatters: "The B story is not a side romance. It is the moral center that exposes the poverty of revenge and group hatred.",
+      directingFocus: "Keep the lovers specific and brave. They should not float above the world; they should make choices while the world presses in."
+    },
+    {
+      beat: "Fun and Games",
+      turningPoint: "The musical delivers its promise: rival dances, romance, satire, gang ritual, and combustible theatrical energy.",
+      scriptMoment: "Dance at the Gym, America, Cool, One Hand One Heart, and Tonight Quintet.",
+      whyItMatters: "This is where the production's identity blooms. The audience should experience why the show is thrilling before the consequences fully land.",
+      directingFocus: "Make style reveal story. Dance is politics, comedy is defense, romance is rebellion, and rhythm is pressure."
+    },
+    {
+      beat: "Midpoint",
+      turningPoint: "The rumble turns the story from dangerous possibility into irreversible tragedy.",
+      scriptMoment: "Rumble under the Highway: Riff and Bernardo die after Tony's intervention fails.",
+      whyItMatters: "This is the false victory/false defeat pivot. The lovers hoped to redirect violence; instead, Tony becomes tied to the violence he tried to stop.",
+      directingFocus: "The midpoint must be exact. Fight choreography, lighting, sound, and actor psychology must make clear that one instant changes every relationship."
+    },
+    {
+      beat: "Bad Guys Close In",
+      turningPoint: "Grief, revenge, police pressure, Chino's pursuit, and group panic close around Tony and Maria.",
+      scriptMoment: "Act II Apartment, Chino's news, Tony's return to Maria, Somewhere, and the Jets' search/protection activity.",
+      whyItMatters: "The enemies are now external and internal: guilt, grief, prejudice, institutions, and the narrowing geography of the city.",
+      directingFocus: "Let hope keep trying to appear. The tighter the danger becomes, the more precious each moment of tenderness feels."
+    },
+    {
+      beat: "All Is Lost",
+      turningPoint: "The attempted rescue message is destroyed; Anita is abused and sends the false message that Maria is dead.",
+      scriptMoment: "Drugstore Taunting Scene and Anita's exit.",
+      whyItMatters: "This is the emotional trapdoor. The last bridge between Maria and Tony is broken by the same hatred the story has been condemning.",
+      directingFocus: "Handle this scene with maximum care and clarity. The audience must see exactly how cruelty creates the final catastrophe."
+    },
+    {
+      beat: "Dark Night of the Soul",
+      turningPoint: "Tony receives the false news and loses the will to live without Maria.",
+      scriptMoment: "Cellar scene with Doc, leading Tony into the street calling for Chino.",
+      whyItMatters: "The hero cannot imagine a future. Love, which gave him direction, seems erased; he walks toward death because the story's hope appears gone.",
+      directingFocus: "Avoid melodrama. Play shock, disbelief, collapse, then fatal action. Doc's moral grief should anchor the scene."
+    },
+    {
+      beat: "Break into Three",
+      turningPoint: "Maria appears alive, creating one last possibility of escape before violence interrupts it.",
+      scriptMoment: "Final neighborhood scene: Tony and Maria see each other and reach for a future.",
+      whyItMatters: "The final act solution briefly appears: love could still choose escape over tribal death. That makes the gunshot more devastating.",
+      directingFocus: "Let the audience breathe for one second. The hope must be real, not fake, or the ending loses force."
+    },
+    {
+      beat: "Finale",
+      turningPoint: "Tony dies, Maria confronts both gangs with the cost of hatred, and the body is carried by members of both sides.",
+      scriptMoment: "Finale after Chino shoots Tony.",
+      whyItMatters: "The story resolves through recognition, not triumph. The survivors finally see what their conflict has made, but too late to save Tony.",
+      directingFocus: "Center Maria's authority. The final image should not comfort too quickly; shared carrying must feel like the first painful act of responsibility."
+    },
+    {
+      beat: "Final Image",
+      turningPoint: "The street is no longer the same territory from the opening; it has become a place of shared grief.",
+      scriptMoment: "The final carrying away and Maria's last movement with the shawl/body image.",
+      whyItMatters: "The closing image answers the opening image. The groups began by fighting over space; they end by having to carry the human cost through that space.",
+      directingFocus: "Echo the opening geography but transform it. Stillness, distance, and who helps carry Tony should tell the audience what has changed."
+    }
+  ]
+};
+
 const defaultState = {
   checklist: {},
   events: [],
@@ -533,6 +644,7 @@ const defaultState = {
   techReadiness: {},
   decisions: [],
   runMaintenance: [],
+  storyBeats: [],
   survival: {},
   meta: {}
 };
@@ -558,11 +670,11 @@ const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selec
 
 function loadState() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return applyWestSideStoryStarter(structuredClone(defaultState));
+  if (!raw) return applyUpgrade2StoryBeats(applyWestSideStoryStarter(structuredClone(defaultState)));
   try {
-    return applyWestSideStoryStarter({ ...structuredClone(defaultState), ...JSON.parse(raw) });
+    return applyUpgrade2StoryBeats(applyWestSideStoryStarter({ ...structuredClone(defaultState), ...JSON.parse(raw) }));
   } catch {
-    return applyWestSideStoryStarter(structuredClone(defaultState));
+    return applyUpgrade2StoryBeats(applyWestSideStoryStarter(structuredClone(defaultState)));
   }
 }
 
@@ -628,6 +740,21 @@ function applyWestSideStoryStarter(currentState) {
     note
   }))];
   nextState.meta[westSideStoryStarterPack.metaKey] = true;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
+  return nextState;
+}
+
+function applyUpgrade2StoryBeats(currentState) {
+  if (currentState.meta?.[westSideStorySaveTheCatUpgrade.metaKey]) return currentState;
+  const existingBeats = new Set((currentState.storyBeats || []).map((beat) => beat.beat));
+  const starterBeats = westSideStorySaveTheCatUpgrade.beats
+    .filter((beat) => !existingBeats.has(beat.beat))
+    .map((beat) => ({ id: crypto.randomUUID(), checked: false, rehearsalNote: "", ...beat }));
+  const nextState = {
+    ...currentState,
+    storyBeats: [...(currentState.storyBeats || []), ...starterBeats],
+    meta: { ...(currentState.meta || {}), [westSideStorySaveTheCatUpgrade.metaKey]: true }
+  };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
   return nextState;
 }
@@ -1124,6 +1251,39 @@ function renderScenes() {
   if (!root.children.length) root.append(emptyNode());
 }
 
+function renderStoryBeats() {
+  const root = $("#beatList");
+  root.innerHTML = "";
+  state.storyBeats.forEach((beat, index) => {
+    const card = document.createElement("article");
+    card.className = `beat-card ${beat.checked ? "ready-card" : ""}`;
+    card.innerHTML = `
+      <div class="beat-number">${index + 1}</div>
+      <div class="beat-content">
+        <div class="card-topline">
+          <h3>${escapeHtml(beat.beat)}</h3>
+          <label class="inline-check"><input type="checkbox" ${beat.checked ? "checked" : ""} /> Clear turning point</label>
+        </div>
+        <strong>${escapeHtml(beat.turningPoint)}</strong>
+        <p><b>Script moment:</b> ${escapeHtml(beat.scriptMoment)}</p>
+        <p><b>Why it matters:</b> ${escapeHtml(beat.whyItMatters)}</p>
+        <p><b>Directing focus:</b> ${escapeHtml(beat.directingFocus)}</p>
+        <label>Rehearsal note <textarea data-field="rehearsalNote" placeholder="What must be clarified in rehearsal?">${escapeHtml(beat.rehearsalNote || "")}</textarea></label>
+      </div>
+    `;
+    $("input[type='checkbox']", card).addEventListener("change", (event) => {
+      beat.checked = event.currentTarget.checked;
+      saveState();
+    });
+    $("textarea", card).addEventListener("input", (event) => {
+      beat.rehearsalNote = event.currentTarget.value;
+      saveState();
+    });
+    root.append(card);
+  });
+  if (!root.children.length) root.append(emptyNode());
+}
+
 function renderNotes() {
   const root = $("#noteList");
   root.innerHTML = "";
@@ -1298,7 +1458,7 @@ function renderOverview() {
   $("#completionMetric").textContent = `${completion}%`;
   $("#eventMetric").textContent = state.events.length;
   $("#castMetric").textContent = state.actors.length;
-  $("#departmentMetric").textContent = state.scenes.length + state.problems.length + state.notes.length;
+  $("#departmentMetric").textContent = state.scenes.length + state.problems.length + state.notes.length + state.storyBeats.length;
 
   const badge = $("#alertBadge");
   badge.hidden = !alerts.length;
@@ -1347,6 +1507,7 @@ function render() {
   renderDailyDesk();
   renderChecklist();
   renderScenes();
+  renderStoryBeats();
   renderNotes();
   renderProblems();
   renderCreative();

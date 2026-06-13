@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aclan's Works | Musical Project Control</title>
-    <link rel="stylesheet" href="styles.css?v=4" />
+    <link rel="stylesheet" href="styles.css?v=5" />
   </head>
   <body>
     <div class="app-shell">
@@ -22,6 +22,7 @@
           <button class="nav-tab" data-view="daily" type="button">Daily Desk</button>
           <button class="nav-tab" data-view="checklist" type="button">Checklist</button>
           <button class="nav-tab" data-view="scenes" type="button">Scenes/Songs</button>
+          <button class="nav-tab" data-view="beats" type="button">Story Beats</button>
           <button class="nav-tab" data-view="notes" type="button">Notes</button>
           <button class="nav-tab" data-view="problems" type="button">Problems</button>
           <button class="nav-tab" data-view="creative" type="button">Creative</button>
@@ -161,6 +162,21 @@
             <button type="submit">Add</button>
           </form>
           <div id="sceneList" class="card-grid"></div>
+        </section>
+
+        <section id="beats" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Upgrade 2</p>
+              <h2>15 Save the Cat turning points</h2>
+            </div>
+          </div>
+
+          <div class="panel beat-intro">
+            <h3>West Side Story story map</h3>
+            <p class="helper-text">Each beat is mapped to a precise dramatic turn in the libretto so rehearsal can protect the story spine, not only the scenes and songs.</p>
+          </div>
+          <div id="beatList" class="beat-list"></div>
         </section>
 
         <section id="notes" class="view">
@@ -408,6 +424,6 @@
     </template>
 
     <script src="firebase-config.js?v=1"></script>
-    <script src="app.js?v=5"></script>
+    <script src="app.js?v=6"></script>
   </body>
 </html>
