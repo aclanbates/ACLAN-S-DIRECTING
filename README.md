@@ -40,6 +40,18 @@ Adds a Story Beats tab with Blake Snyder's 15 Save the Cat beats mapped to West 
 - A rehearsal note field
 - A checkbox for whether the turn is clear in rehearsal
 
+## Upgrade 3
+
+Adapts the provided Numbers workbook style into the West Side Story app:
+
+- Numbers-style yellow / gray / turquoise / magenta / pink visual board
+- 8-week rehearsal plan
+- Song, scene, choreography, cast, work-day, and style breakdown
+- Fast command view for directors
+- Instant problem-answer system for common West Side Story production issues
+
+Singin' in the Rain-specific material was removed; only the scheduling style, color logic, and production-tracking structure were carried forward.
+
 ## Firebase Sync Setup
 
 1. In Firebase Console, create or open your project.

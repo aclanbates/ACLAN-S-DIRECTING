@@ -624,6 +624,295 @@ const westSideStorySaveTheCatUpgrade = {
   ]
 };
 
+const wssWeekPlan = [
+  {
+    weeks: "Week 1-2",
+    title: "Table, music, foundations",
+    focus: "Read-through, dramaturgy, character relationships, vocal foundations, basic movement vocabulary.",
+    directorAction: "Lock the story spine, safety language, pronunciation/dialect choices, and actor objectives before staging gets crowded."
+  },
+  {
+    weeks: "Week 3-4",
+    title: "Blocking and core choreography",
+    focus: "Prologue, Dance at the Gym, America, Cool, One Hand One Heart, Tonight Quintet, and major scene traffic.",
+    directorAction: "Build scenes with exact geography: who owns space, who crosses boundaries, who is watched, and who is trapped."
+  },
+  {
+    weeks: "Week 5-6",
+    title: "Runs, danger, and precision",
+    focus: "Rumble, Taunting Scene, Finale, Somewhere, scene transitions, fight/intimacy integration, and full act runs.",
+    directorAction: "Stop polishing decoration until safety, story turns, and emotional transitions are exact."
+  },
+  {
+    weeks: "Week 7-8",
+    title: "Tech, costumes, previews",
+    focus: "Cue-to-cue, costumes, microphones, props, weapons, scene changes, lighting states, pacing, audience response.",
+    directorAction: "Protect performers from overload. Fix only what changes the story, safety, timing, or audience understanding."
+  }
+];
+
+const wssBoardRows = [
+  {
+    id: "prologue",
+    category: "dance",
+    actScene: "ACT I / PROLOGUE",
+    sceneSong: "The Neighborhood",
+    details: "Jets and Sharks establish territory through danced conflict before the spoken story begins.",
+    workDays: 8,
+    cast: "Jets, Sharks, Riff, Bernardo, police",
+    choreo: "Fight-dance map, gang vocabulary, street ownership, police freeze.",
+    danceNo: "1",
+    style: "Sharp jazz-ballet street language; danger must be readable, not random."
+  },
+  {
+    id: "jet-song",
+    category: "music",
+    actScene: "ACT I",
+    sceneSong: "Jet Song",
+    details: "Riff and the Jets define loyalty, status, and pressure on Tony.",
+    workDays: 4,
+    cast: "Riff, Jets",
+    choreo: "Group identity, unison accents, masculine rhythm, status levels.",
+    danceNo: "2",
+    style: "Bold, angular, fast, funny but threatening."
+  },
+  {
+    id: "something",
+    category: "music",
+    actScene: "ACT I / SCENE 2",
+    sceneSong: "Something's Coming",
+    details: "Tony separates from old gang identity and senses a future he cannot name yet.",
+    workDays: 3,
+    cast: "Tony, Riff",
+    choreo: "Stillness after gang energy; hopeful physical lift without dance clutter.",
+    danceNo: "3",
+    style: "Private, open, forward-moving, clean vocal storytelling."
+  },
+  {
+    id: "bridal-shop",
+    category: "scene",
+    actScene: "ACT I / SCENE 3",
+    sceneSong: "Bridal Shop",
+    details: "Maria, Anita, Chino, and Bernardo create the family/social pressure before the dance.",
+    workDays: 3,
+    cast: "Maria, Anita, Bernardo, Chino, women",
+    choreo: "Fabric/scissors business, shop traffic, teasing rhythms.",
+    danceNo: "-",
+    style: "Warm, practical, intimate, culturally grounded."
+  },
+  {
+    id: "gym",
+    category: "dance",
+    actScene: "ACT I / SCENE 4",
+    sceneSong: "Dance at the Gym",
+    details: "Rival groups meet in public; Tony and Maria find private focus inside the crowd.",
+    workDays: 8,
+    cast: "Full company",
+    choreo: "Mambo, promenade, partner rules, faction separation, Meeting Scene.",
+    danceNo: "4",
+    style: "Electric color, social heat, controlled chaos, instant romantic isolation."
+  },
+  {
+    id: "maria",
+    category: "music",
+    actScene: "ACT I",
+    sceneSong: "Maria",
+    details: "Tony names the event that has changed his life.",
+    workDays: 2,
+    cast: "Tony",
+    choreo: "Minimal staging; let breath and name transform space.",
+    danceNo: "5",
+    style: "Sincere, suspended, luminous."
+  },
+  {
+    id: "balcony",
+    category: "music",
+    actScene: "ACT I / SCENE 5",
+    sceneSong: "Balcony Scene / Tonight",
+    details: "Tony and Maria choose each other while danger remains outside the frame.",
+    workDays: 5,
+    cast: "Tony, Maria",
+    choreo: "Fire escape/window levels, distance-to-touch, intimacy protocol.",
+    danceNo: "6",
+    style: "Tender, urgent, vertical, breath-led."
+  },
+  {
+    id: "america",
+    category: "dance",
+    actScene: "ACT I",
+    sceneSong: "America",
+    details: "Anita and the community argue desire, migration, gender, and belonging.",
+    workDays: 6,
+    cast: "Anita, Rosalia, Shark girls/ensemble",
+    choreo: "Rhythmic precision, counterpoint, social argument through dance.",
+    danceNo: "7",
+    style: "Brilliant, witty, biting, never decorative only."
+  },
+  {
+    id: "drugstore-cool",
+    category: "dance",
+    actScene: "ACT I / SCENE 6",
+    sceneSong: "War Council / Cool",
+    details: "The boys imitate diplomacy while preparing violence; Cool controls panic.",
+    workDays: 6,
+    cast: "Riff, Bernardo, Tony, Jets, Sharks, Doc",
+    choreo: "Drugstore geography, seated power, containment, explosive restraint.",
+    danceNo: "8",
+    style: "Compressed, nervy, controlled fire."
+  },
+  {
+    id: "one-hand",
+    category: "music",
+    actScene: "ACT I / SCENE 7",
+    sceneSong: "One Hand, One Heart",
+    details: "The lovers create a private wedding ritual inside the bridal shop.",
+    workDays: 3,
+    cast: "Tony, Maria",
+    choreo: "Sacred stillness, hand focus, shop symbolism.",
+    danceNo: "9",
+    style: "Simple, holy, impossible."
+  },
+  {
+    id: "quintet",
+    category: "music",
+    actScene: "ACT I",
+    sceneSong: "Tonight Quintet",
+    details: "Love, revenge, anticipation, and fear collide before the rumble.",
+    workDays: 5,
+    cast: "Tony, Maria, Anita, Jets, Sharks",
+    choreo: "Separate worlds onstage; clean musical traffic and stakes.",
+    danceNo: "10",
+    style: "Layered, cinematic, tightening."
+  },
+  {
+    id: "rumble",
+    category: "tech",
+    actScene: "ACT I",
+    sceneSong: "Rumble",
+    details: "Tony's attempt to stop the fight fails; Riff and Bernardo die.",
+    workDays: 7,
+    cast: "Tony, Riff, Bernardo, Jets, Sharks, Chino nearby",
+    choreo: "Fight captain only: knives, spacing, police pressure, death beats.",
+    danceNo: "11",
+    style: "Brutal, exact, shadowed, no improvisation."
+  },
+  {
+    id: "pretty",
+    category: "music",
+    actScene: "ACT II / SCENE 1",
+    sceneSong: "I Feel Pretty",
+    details: "Maria's joy collides with the knowledge of Bernardo's death.",
+    workDays: 4,
+    cast: "Maria, girls, Chino, Tony",
+    choreo: "Lightness that can turn instantly; apartment traffic.",
+    danceNo: "12",
+    style: "Comic sparkle with tragic trapdoor underneath."
+  },
+  {
+    id: "somewhere",
+    category: "dance",
+    actScene: "ACT II",
+    sceneSong: "Somewhere / Ballet",
+    details: "The dream of a world beyond tribal hatred appears, then fractures.",
+    workDays: 7,
+    cast: "Tony, Maria, ensemble",
+    choreo: "Dream world, procession, nightmare, transformed gang vocabulary.",
+    danceNo: "13",
+    style: "Lyrical, open, idealized, then broken."
+  },
+  {
+    id: "krupke",
+    category: "music",
+    actScene: "ACT II / SCENE 2",
+    sceneSong: "Gee, Officer Krupke",
+    details: "The Jets satirize institutional failure while fear about Tony grows.",
+    workDays: 4,
+    cast: "Jets, Anybodys, Krupke",
+    choreo: "Comic role switching, timing, physical gags, fast status changes.",
+    danceNo: "14",
+    style: "Satirical, coping, not careless."
+  },
+  {
+    id: "boy-like-that",
+    category: "music",
+    actScene: "ACT II / SCENE 3",
+    sceneSong: "A Boy Like That / I Have a Love",
+    details: "Anita and Maria collide over grief, love, loyalty, and moral cost.",
+    workDays: 5,
+    cast: "Anita, Maria, Schrank",
+    choreo: "Close-range emotional traffic, locked-room pressure.",
+    danceNo: "15",
+    style: "Raw, truthful, two women both right from different wounds."
+  },
+  {
+    id: "taunting",
+    category: "tech",
+    actScene: "ACT II / SCENE 4",
+    sceneSong: "Drugstore Taunting Scene",
+    details: "Anita's attempt to help is destroyed; the false message is born.",
+    workDays: 5,
+    cast: "Anita, Jets, Doc",
+    choreo: "Closed-room safety protocol, consent boundaries, exact aggression map.",
+    danceNo: "16",
+    style: "Highest care; terrifying without actor harm."
+  },
+  {
+    id: "cellar-finale",
+    category: "tech",
+    actScene: "ACT II / SCENE 5-6",
+    sceneSong: "Cellar / Finale",
+    details: "Tony believes Maria is dead, runs toward Chino, is shot, and Maria indicts both groups.",
+    workDays: 7,
+    cast: "Tony, Maria, Chino, Doc, Jets, Sharks",
+    choreo: "Gun safety, final traffic, body carry, Maria center, shawl/body image.",
+    danceNo: "17",
+    style: "Still, devastating, no quick comfort."
+  }
+];
+
+const problemAnswerBank = [
+  {
+    keywords: ["anita", "taunting", "unsafe", "drugstore", "assault", "touch"],
+    title: "Make the Anita drugstore scene safe immediately",
+    answer: "Stop full-speed rehearsal. Put the scene into protocol: name every contact, insult, distance, exit, and stop signal. Rehearse it as choreography first, emotion second. Keep Doc's entrance exact. The solution is not asking Anita's actor to be braver; it is making the room safer and the behavior more precise."
+  },
+  {
+    keywords: ["rumble", "knife", "fight", "weapon", "chino", "gun", "shoot"],
+    title: "Fix violence by reducing choices",
+    answer: "Move all violence into counted choreography. Mark weapon paths, eye focus, distance, and freeze points. If the rumble is messy, remove speed before adding intensity. For the gun, rehearse the final sequence dry, then with prop, then with sound cue. No improvised anger around weapons."
+  },
+  {
+    keywords: ["tony", "maria", "love", "chemistry", "balcony", "believable"],
+    title: "Make Tony and Maria believable",
+    answer: "Do not push romance first. Build listening, danger, and discovery. Give each actor three playable actions: Tony reaches for a future; Maria tests whether he is real; both hide from the world while wanting to be seen. The chemistry will appear when the obstacles are specific."
+  },
+  {
+    keywords: ["ensemble", "tired", "stamina", "dance", "injury", "energy"],
+    title: "Protect stamina without lowering standards",
+    answer: "Separate stamina runs from detail rehearsals. Do one clean spacing pass, one music pass, one performance pass, then stop. Track shoes/floor/warmup. If energy drops, fix transitions and breath points before blaming commitment."
+  },
+  {
+    keywords: ["story", "confusing", "audience", "unclear", "beats", "turning"],
+    title: "Return to the turning point",
+    answer: "Ask: what changes in this scene that cannot be unchanged? If nobody can answer in one sentence, the staging is too busy. Use the Story Beats tab and rehearse the scene around the turn, not around all details equally."
+  },
+  {
+    keywords: ["america", "culture", "accent", "stereotype", "puerto", "language"],
+    title: "Handle culture with specificity",
+    answer: "Pause and define what is historical context, what is character opinion, and what is production attitude. Do not let accents or comedy become decoration. Give actors dramaturgy, shared pronunciation rules, and permission to ask about harmful simplifications."
+  },
+  {
+    keywords: ["tech", "cue", "scene change", "slow", "traffic", "transition"],
+    title: "Fix tech by naming the bottleneck",
+    answer: "Do not run the whole act to solve one traffic jam. Isolate the change: last line, music cue, object handoff, path, light state, first line after. Assign one owner and one deadline. If it affects safety or story clarity, it is urgent; if it is only elegance, schedule it later."
+  },
+  {
+    keywords: ["actor", "late", "conflict", "attitude", "problem", "discipline"],
+    title: "Handle actor problems behaviorally",
+    answer: "Describe the exact behavior, the production effect, and the required change. Do not diagnose personality. Example: 'When you arrive after warmup, the fight call loses ten minutes and safety drops. Tomorrow you must be ready at call time or we restage your traffic.'"
+  }
+];
+
 const defaultState = {
   checklist: {},
   events: [],
@@ -645,6 +934,7 @@ const defaultState = {
   decisions: [],
   runMaintenance: [],
   storyBeats: [],
+  boardProgress: {},
   survival: {},
   meta: {}
 };
@@ -1048,6 +1338,19 @@ function setupForms() {
   $("#syncCodeInput").addEventListener("input", (event) => {
     event.currentTarget.value = formatSyncCode(event.currentTarget.value);
   });
+
+  $$(".board-filter").forEach((button) => {
+    button.addEventListener("click", () => {
+      $$(".board-filter").forEach((item) => item.classList.toggle("active", item === button));
+      renderWssBoard(button.dataset.boardFilter);
+    });
+  });
+
+  $("#askProblemButton").addEventListener("click", answerProblemQuestion);
+  $("#problemQuestion").addEventListener("keydown", (event) => {
+    if ((event.metaKey || event.ctrlKey) && event.key === "Enter") answerProblemQuestion();
+  });
+  renderProblemChips();
 }
 
 function renderChecklist() {
@@ -1429,6 +1732,141 @@ function renderRunMaintenance() {
   if (!root.children.length) root.append(emptyNode());
 }
 
+function renderCommandCenter() {
+  const alerts = getAlerts();
+  const openProblems = state.problems.filter((problem) => problem.status !== "Solved");
+  const unclearBeats = state.storyBeats.filter((beat) => !beat.checked);
+  const incompleteBoard = wssBoardRows.filter((row) => state.boardProgress[row.id] !== "done");
+
+  $("#commandTodayFocus").textContent = state.dailyDesk.goal ? state.dailyDesk.goal.slice(0, 72) : "Set today's rehearsal target";
+  $("#commandSceneCount").textContent = `${state.scenes.length}`;
+  $("#commandProblemCount").textContent = `${openProblems.length}`;
+  $("#commandBeatCount").textContent = `${unclearBeats.length}`;
+
+  const badge = $("#commandAlertBadge");
+  badge.hidden = !alerts.length;
+  badge.textContent = `${alerts.length} urgent`;
+
+  const nowRoot = $("#commandNowList");
+  nowRoot.innerHTML = "";
+  [
+    ["Next board item", incompleteBoard[0]?.sceneSong || "All board items marked done"],
+    ["Most urgent problem", openProblems.find((problem) => problem.severity === "critical")?.title || openProblems[0]?.title || "No open production problems"],
+    ["Story beat to clarify", unclearBeats[0]?.beat || "All 15 story turns are marked clear"],
+    ["Today scenes", state.dailyDesk.scenes || "No scenes listed for today"]
+  ].forEach(([label, value]) => {
+    const item = document.createElement("div");
+    item.className = "quick-item";
+    item.innerHTML = `<span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong>`;
+    nowRoot.append(item);
+  });
+
+  const answerRoot = $("#commandAnswerList");
+  answerRoot.innerHTML = "";
+  problemAnswerBank.slice(0, 4).forEach((entry) => {
+    const item = document.createElement("button");
+    item.className = "quick-answer-button";
+    item.type = "button";
+    item.textContent = entry.title;
+    item.addEventListener("click", () => {
+      showProblemAnswer(entry);
+      $$(".nav-tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === "solver"));
+      $$(".view").forEach((view) => view.classList.toggle("active-view", view.id === "solver"));
+    });
+    answerRoot.append(item);
+  });
+}
+
+function renderWssBoard(filter = $(".board-filter.active")?.dataset.boardFilter || "all") {
+  const root = $("#wssBoardTable");
+  root.innerHTML = "";
+  const table = document.createElement("div");
+  table.className = "numbers-table";
+  table.innerHTML = `
+    <div class="numbers-row numbers-header">
+      <div>BOLÜM</div>
+      <div>SAHNE / ŞARKI</div>
+      <div>DETAYLAR</div>
+      <div>ÇALIŞMA GÜNÜ</div>
+      <div>CAST</div>
+      <div>KOREO / GÖREV</div>
+      <div>DANS NO</div>
+      <div>STYLE</div>
+      <div>DURUM</div>
+    </div>
+  `;
+
+  wssBoardRows
+    .filter((row) => filter === "all" || row.category === filter)
+    .forEach((row) => {
+      const status = state.boardProgress[row.id] || "watch";
+      const item = document.createElement("div");
+      item.className = `numbers-row board-status-${status}`;
+      item.innerHTML = `
+        <div class="cell-section">${escapeHtml(row.actScene)}</div>
+        <div class="cell-song">${escapeHtml(row.sceneSong)}</div>
+        <div class="cell-detail">${escapeHtml(row.details)}</div>
+        <div class="cell-days">${row.workDays}</div>
+        <div class="cell-cast">${escapeHtml(row.cast)}</div>
+        <div class="cell-choreo">${escapeHtml(row.choreo)}</div>
+        <div class="cell-dance">${escapeHtml(row.danceNo)}</div>
+        <div class="cell-style">${escapeHtml(row.style)}</div>
+        <div class="cell-status">
+          <button data-status="watch" type="button">Watch</button>
+          <button data-status="working" type="button">Work</button>
+          <button data-status="done" type="button">Done</button>
+        </div>
+      `;
+      $$("[data-status]", item).forEach((button) => {
+        button.addEventListener("click", () => {
+          state.boardProgress[row.id] = button.dataset.status;
+          saveState();
+        });
+      });
+      table.append(item);
+    });
+  root.append(table);
+
+  const weekRoot = $("#weekPlan");
+  weekRoot.innerHTML = "";
+  wssWeekPlan.forEach((week) => {
+    const card = document.createElement("article");
+    card.className = "week-card";
+    card.innerHTML = `
+      <strong>${escapeHtml(week.weeks)} · ${escapeHtml(week.title)}</strong>
+      <p>${escapeHtml(week.focus)}</p>
+      <span>${escapeHtml(week.directorAction)}</span>
+    `;
+    weekRoot.append(card);
+  });
+}
+
+function renderProblemChips() {
+  const root = $("#problemChipList");
+  root.innerHTML = "";
+  problemAnswerBank.forEach((entry) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "problem-chip";
+    chip.textContent = entry.title;
+    chip.addEventListener("click", () => showProblemAnswer(entry));
+    root.append(chip);
+  });
+}
+
+function answerProblemQuestion() {
+  const question = $("#problemQuestion").value.toLowerCase();
+  const match = problemAnswerBank.find((entry) => entry.keywords.some((keyword) => question.includes(keyword)));
+  showProblemAnswer(match || {
+    title: "Start by identifying the real turning point",
+    answer: "Write the problem in one sentence, then ask: is this about safety, story clarity, music, choreography, actor behavior, or tech traffic? Fix the smallest thing that changes the audience's understanding. If no one can name what changes in the scene, return to the Story Beats tab and rehearse the turn."
+  });
+}
+
+function showProblemAnswer(entry) {
+  $("#problemAnswer").innerHTML = `<strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.answer)}</p>`;
+}
+
 function renderSurvivalFields() {
   const root = $("#survivalFields");
   root.innerHTML = "";
@@ -1504,6 +1942,8 @@ function render() {
   $("#survivalNotes").value = state.survivalNotes || "";
   $("#syncCodeInput").value = syncState.code || "";
   renderOverview();
+  renderCommandCenter();
+  renderWssBoard();
   renderDailyDesk();
   renderChecklist();
   renderScenes();

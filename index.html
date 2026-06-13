@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Aclan's Works | Musical Project Control</title>
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=6" />
   </head>
   <body>
     <div class="app-shell">
@@ -18,13 +18,16 @@
         </div>
 
         <nav class="nav-tabs" aria-label="Main sections">
-          <button class="nav-tab active" data-view="overview" type="button">Overview</button>
+          <button class="nav-tab" data-view="overview" type="button">Overview</button>
+          <button class="nav-tab active" data-view="command" type="button">Command</button>
+          <button class="nav-tab" data-view="wssboard" type="button">WSS Board</button>
           <button class="nav-tab" data-view="daily" type="button">Daily Desk</button>
           <button class="nav-tab" data-view="checklist" type="button">Checklist</button>
           <button class="nav-tab" data-view="scenes" type="button">Scenes/Songs</button>
           <button class="nav-tab" data-view="beats" type="button">Story Beats</button>
           <button class="nav-tab" data-view="notes" type="button">Notes</button>
           <button class="nav-tab" data-view="problems" type="button">Problems</button>
+          <button class="nav-tab" data-view="solver" type="button">Ask Problem</button>
           <button class="nav-tab" data-view="creative" type="button">Creative</button>
           <button class="nav-tab" data-view="schedule" type="button">Schedule</button>
           <button class="nav-tab" data-view="casts" type="button">Casts</button>
@@ -46,7 +49,7 @@
       </aside>
 
       <main>
-        <section id="overview" class="view active-view">
+        <section id="overview" class="view">
           <div class="topbar">
             <div>
               <p class="eyebrow">Production dashboard</p>
@@ -91,6 +94,72 @@
               <div id="deadlineList" class="stack-list"></div>
             </section>
           </div>
+        </section>
+
+        <section id="command" class="view active-view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Upgrade 3</p>
+              <h2>West Side Story command view</h2>
+            </div>
+            <div id="commandAlertBadge" class="alert-badge" hidden>0 urgent</div>
+          </div>
+
+          <div class="command-grid">
+            <article class="command-card yellow-card">
+              <span>Today focus</span>
+              <strong id="commandTodayFocus">Set the rehearsal target</strong>
+            </article>
+            <article class="command-card cyan-card">
+              <span>Scenes / songs</span>
+              <strong id="commandSceneCount">0</strong>
+            </article>
+            <article class="command-card magenta-card">
+              <span>Open problems</span>
+              <strong id="commandProblemCount">0</strong>
+            </article>
+            <article class="command-card pink-card">
+              <span>Unclear story beats</span>
+              <strong id="commandBeatCount">0</strong>
+            </article>
+          </div>
+
+          <div class="command-panels">
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Right Now</h3>
+                <span>seconds-only director view</span>
+              </div>
+              <div id="commandNowList" class="quick-list"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-heading">
+                <h3>Immediate Answers</h3>
+                <span>fast problem solving</span>
+              </div>
+              <div id="commandAnswerList" class="quick-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="wssboard" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Numbers-style board</p>
+              <h2>West Side Story schedule, songs, choreography</h2>
+            </div>
+          </div>
+
+          <div class="board-toolbar">
+            <button class="board-filter active" data-board-filter="all" type="button">All</button>
+            <button class="board-filter" data-board-filter="music" type="button">Music</button>
+            <button class="board-filter" data-board-filter="dance" type="button">Dance/Fight</button>
+            <button class="board-filter" data-board-filter="scene" type="button">Scene</button>
+            <button class="board-filter" data-board-filter="tech" type="button">Tech/Safety</button>
+          </div>
+
+          <div id="wssBoardTable" class="numbers-board"></div>
+          <div id="weekPlan" class="week-plan"></div>
         </section>
 
         <section id="checklist" class="view">
@@ -230,6 +299,28 @@
             <button type="submit">Add</button>
           </form>
           <div id="problemList" class="card-grid"></div>
+        </section>
+
+        <section id="solver" class="view">
+          <div class="topbar">
+            <div>
+              <p class="eyebrow">Ask the app</p>
+              <h2>Immediate production answers</h2>
+            </div>
+          </div>
+
+          <div class="solver-grid">
+            <article class="panel">
+              <h3>Ask a problem</h3>
+              <textarea id="problemQuestion" placeholder="Example: Anita scene feels unsafe, Tony and Maria are not believable, rumble is messy, ensemble is tired..."></textarea>
+              <button id="askProblemButton" class="solver-button" type="button">Get answer</button>
+            </article>
+            <article class="panel solver-answer-card">
+              <h3>Best immediate answer</h3>
+              <div id="problemAnswer" class="solver-answer">Ask a West Side Story production problem and the app will give an immediate directing action.</div>
+            </article>
+          </div>
+          <div id="problemChipList" class="problem-chip-list"></div>
         </section>
 
         <section id="creative" class="view">
@@ -424,6 +515,6 @@
     </template>
 
     <script src="firebase-config.js?v=1"></script>
-    <script src="app.js?v=6"></script>
+    <script src="app.js?v=7"></script>
   </body>
 </html>
