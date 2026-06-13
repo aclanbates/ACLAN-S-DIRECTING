@@ -15,6 +15,20 @@ Static directing dashboard with optional Firebase sync.
 - Performance Run Maintenance
 - Directors Survival
 
+## West Side Story Starter Pack
+
+The app pre-fills a production starter pack based on the provided West Side Story libretto:
+
+- Act and scene/song breakdowns
+- Role slots with TBD actor names
+- Creative vision notes
+- Rehearsal notes
+- Critical problem tracker items
+- Tech readiness notes
+- Decisions and run-maintenance reminders
+
+The starter pack uses production summaries and directing analysis rather than copying dialogue or lyrics.
+
 ## Firebase Sync Setup
 
 1. In Firebase Console, create or open your project.

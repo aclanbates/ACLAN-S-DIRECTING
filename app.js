@@ -240,6 +240,279 @@ const survivalPrompts = [
   ["calmActions", "Calm action suggestions", "The next practical thing to do."]
 ];
 
+const westSideStoryStarterPack = {
+  metaKey: "westSideStoryLibrettoV1",
+  dailyDesk: {
+    goal: "Keep every rehearsal tied to the central engine: young people trying to belong, then discovering how tribal loyalty destroys love, safety, and possibility.",
+    scenes: "Prioritize Prologue/Jet Song, Dance at the Gym, Balcony/Tonight, War Council/Cool, One Hand One Heart, Tonight Quintet/Rumble, I Feel Pretty, Somewhere, Gee Officer Krupke, A Boy Like That/I Have a Love, Taunting Scene, Cellar, and Finale.",
+    urgent: "Build safety around fight work, intimacy, racialized language, group violence, Anita's drugstore scene, knives/gun handling, and the final shooting.",
+    notes: "Track whether every number has a clear story function, not only musical polish. Keep transitions cinematic and dangerous without losing emotional truth.",
+    decisions: "Confirm casting/doubling, dialect and language approach, violence/intimacy protocols, weapon policy, and how realistic versus stylized the street world will be."
+  },
+  creative: {
+    coreConcept: "A city pressure-cooker where belonging feels like survival until love exposes the cost of inherited hatred.",
+    visualWorld: "Late-summer West Side streets: brick, fire escapes, alleys, playground edges, drugstore, bridal shop, gym, apartment, cellar, and highway shadows. The world should feel cramped, watchful, rhythmic, and ready to erupt.",
+    emotionalTemperature: "Start restless and territorial, open into sudden romance, then tighten into dread. Act II should feel like hope trying to breathe inside a city that keeps closing in.",
+    movementLanguage: "Movement must carry social identity: Jets sharp, hungry, street-claiming; Sharks proud, contained, heat under control; Tony and Maria gradually break the vocabulary into tenderness and reach.",
+    soundWorld: "Percussive city energy, whistles, sirens, dance rhythms, romantic suspension, and sudden silence after violence. Sound transitions should make the neighborhood feel alive even when the stage is still.",
+    references: "New York West Side late 1950s, Romeo and Juliet structure, urban renewal displacement, immigrant family pressure, youth gang territoriality, summer heat, dancehall social ritual.",
+    nonNegotiables: "Never let the production become only beautiful choreography. The beauty must sharpen the danger; the danger must never flatten the love story."
+  },
+  survival: {
+    actorConflict: "This story can stir identity, belonging, masculinity, and grief. Keep notes behavioral and specific; separate actor emotion from character aggression.",
+    designerConflict: "If design beauty weakens danger or safety, return to the core rule: the audience must feel both seduction and threat in the same space.",
+    scriptProblem: "Some language and cultural framing require responsible contextual handling. Decide what is historically placed, what needs dramaturgy, and what must be handled with care in rehearsal.",
+    managementPressure: "Fight scenes, intimacy, dance, dialect, and music need time. If time is cut, reduce staging complexity before reducing safety or story clarity.",
+    replacementEmergency: "For replacements, teach traffic, safety, music entrances, and emotional spine first. Add style and detail only after they can survive the scene safely.",
+    badRehearsalDay: "If the room gets tense, return to exact objectives: who wants territory, who wants escape, who wants dignity, who wants love.",
+    morale: "Alternate heavy work with visible wins. End hard rehearsals by naming what became clearer, not only what remains broken.",
+    sayDontSay: "Say: 'Let us make the action specific.' Avoid: vague moral judgments about actors or communities. Notes must never shame identity.",
+    calmActions: "When confusion rises, stop and map the scene: location, time, danger, objective, obstacle, physical rule, music cue, exit."
+  },
+  techReadiness: {
+    "Set ready": {
+      ready: false,
+      notes: "Needs playable street levels, brick wall/fire escape logic, drugstore/cellar access, bridal shop, gym, apartment, highway/underpass, and fast shifts that preserve danger."
+    },
+    "Props ready": {
+      ready: false,
+      notes: "Track knives, gun, bridal shop items, Doc's drugstore items, stools/crates, Anita's shawl, Maria/Tony personal pieces, and any thrown or grabbed objects."
+    },
+    "Costumes ready": {
+      ready: false,
+      notes: "Costumes must support dance, fight, heat, quick movement, group identity, gym formality, bridal shop work, Maria's Act II change, and Anita's drugstore scene."
+    },
+    "Sound ready": {
+      ready: false,
+      notes: "Balance lyrics/dialogue with heavy dance and ensemble traffic. Plan sirens, whistles, gunshot, offstage calls, and underscoring transitions."
+    },
+    "Lights ready": {
+      ready: false,
+      notes: "Lighting must define street danger, dancehall glamour, balcony intimacy, rumble shadows, dream space in Somewhere, cellar isolation, and final dawn/aftermath."
+    },
+    "Scene changes ready": {
+      ready: false,
+      notes: "Major changes include neighborhood to yard, bridal shop, gym, alley, drugstore, rumble/highway, apartment, drugstore/cellar, and finale neighborhood."
+    },
+    "Safety ready": {
+      ready: false,
+      notes: "Fight captain/intimacy protocols required for gang violence, knife work, gun handling, lifts/catches, Anita taunting scene, and Tony's death."
+    },
+    "Emergency plans ready": {
+      ready: false,
+      notes: "Prepare covers for Tony, Maria, Riff, Bernardo, Anita, Chino, Action, Anybodys, Doc, Schrank/Krupke, and dance-heavy ensemble tracks."
+    }
+  },
+  actors: [
+    ["TBD actor - Tony", "Tony", "first", 18],
+    ["TBD actor - Maria", "Maria", "first", 18],
+    ["TBD actor - Riff", "Riff", "first", 14],
+    ["TBD actor - Bernardo", "Bernardo", "first", 14],
+    ["TBD actor - Anita", "Anita", "first", 16],
+    ["TBD actor - Chino", "Chino", "first", 10],
+    ["TBD actor - Doc", "Doc", "first", 8],
+    ["TBD actor - Lt. Schrank", "Lt. Schrank", "first", 5],
+    ["TBD actor - Officer Krupke", "Officer Krupke", "first", 6],
+    ["TBD actor - Anybodys", "Anybodys", "first", 10],
+    ["TBD actor - Action", "Action", "first", 12],
+    ["TBD actor - A-Rab", "A-Rab", "first", 10],
+    ["TBD actor - Baby John", "Baby John", "first", 10],
+    ["TBD actor - Diesel", "Diesel", "first", 10],
+    ["TBD actor - Snowboy", "Snowboy", "first", 8],
+    ["TBD actor - Big Deal", "Big Deal", "first", 8],
+    ["TBD actor - Consuelo", "Consuelo", "first", 8],
+    ["TBD actor - Rosalia", "Rosalia", "first", 8],
+    ["TBD actor - Graziella", "Graziella", "first", 8],
+    ["TBD actor - Velma", "Velma", "first", 8],
+    ["TBD actor - Jets Ensemble", "Jets Ensemble", "first", 16],
+    ["TBD actor - Sharks Ensemble", "Sharks Ensemble", "first", 16]
+  ],
+  scenes: [
+    {
+      title: "Act I Prologue - The Neighborhood",
+      characters: "Jets, Sharks, Riff, Bernardo, Baby John, A-Rab, Action, Schrank, Krupke",
+      status: "Not started",
+      purpose: "Establish the territory, the rival codes, the neighborhood pressure, and the physical language of conflict before the audience hears the story explained.",
+      needs: "Dance-fight vocabulary, police interruption, gang identity, street map, playable brick wall/alley traffic, safety spacing.",
+      problems: "Must be dangerous without becoming chaotic or unreadable. The audience needs to understand the power balance immediately.",
+      notes: "Use the extracted synopsis timing: pre-story months condense into the street world."
+    },
+    {
+      title: "Act I - Jet Song",
+      characters: "Riff, Jets, Tony referenced",
+      status: "Not started",
+      purpose: "Define Jet brotherhood, loyalty, bravado, and the pressure placed on Tony to return to the gang.",
+      needs: "Ensemble vocal blend, masculine rhythm, group architecture, sharp unison, clear status levels.",
+      problems: "Avoid letting gang pride become cartoonish. It should be funny, thrilling, and worrying."
+    },
+    {
+      title: "Act I Scene 2 - A Yard / Something's Coming",
+      characters: "Tony, Riff",
+      status: "Not started",
+      purpose: "Reveal Tony's separation from gang identity and his sense that his life is about to change.",
+      needs: "Private space after gang energy, Tony's vocal freedom, transition from pressure to hope.",
+      problems: "Tony must not seem passive; he is actively reaching toward a different future."
+    },
+    {
+      title: "Act I Scene 3 - Bridal Shop",
+      characters: "Maria, Anita, Bernardo, Chino, bridal shop women",
+      status: "Not started",
+      purpose: "Introduce Maria's innocence, family pressure, Chino expectation, and Anita's practical warmth.",
+      needs: "Costume shop activity, hems/scissors/fabric business, Spanish/English rhythm, clear relationship web.",
+      problems: "Maria must be young without being empty; Anita must tease without losing intelligence."
+    },
+    {
+      title: "Act I Scene 4 - Dance at the Gym",
+      characters: "Jets, Sharks, Tony, Maria, Riff, Bernardo, Anita, Chino, girls",
+      status: "Not started",
+      purpose: "Place rival groups in forced social contact and create the first Tony/Maria recognition across tribal lines.",
+      needs: "Mambo/social dance rules, Promenade, Meeting Scene, visible faction separation, instant romantic focus.",
+      problems: "The room must stay socially legible while the lovers experience a private world."
+    },
+    {
+      title: "Act I - Maria",
+      characters: "Tony",
+      status: "Not started",
+      purpose: "Tony names the transformation after meeting Maria; the city becomes charged by one name.",
+      needs: "Clean vocal line, isolated light, post-dance breath, simple staging that does not compete.",
+      problems: "Protect sincerity. Irony or overacting will damage the love story."
+    },
+    {
+      title: "Act I Scene 5 - Alley / Balcony Scene",
+      characters: "Tony, Maria",
+      status: "Not started",
+      purpose: "The lovers move from shock to commitment while danger remains just outside the frame.",
+      needs: "Fire escape/window logic, intimacy direction, distance-to-touch progression, quiet musical truth.",
+      problems: "Needs believable urgency: they barely know each other, but the scene must make that feel inevitable."
+    },
+    {
+      title: "Act I - America",
+      characters: "Anita, Rosalia, Shark girls, Bernardo/Sharks depending staging",
+      status: "Not started",
+      purpose: "Expose competing views of America, migration, gender, desire, and belonging inside the Puerto Rican community.",
+      needs: "Rhythmic precision, comedy with bite, cultural dramaturgy, group counterpoint.",
+      problems: "Handle stereotypes with intelligence and context. The number must be alive, not decorative."
+    },
+    {
+      title: "Act I Scene 6 - Drugstore / War Council / Cool",
+      characters: "Riff, Bernardo, Tony, Jets, Sharks, Doc, girls, Schrank",
+      status: "Not started",
+      purpose: "Negotiate the rumble terms, show Tony trying to reduce harm, and reveal how fragile adult authority is.",
+      needs: "Doc's drugstore geography, cellar access, gang seating/status, Schrank interruption, controlled tension.",
+      problems: "The war council must feel like boys imitating diplomacy while moving toward disaster."
+    },
+    {
+      title: "Act I Scene 7 - Bridal Shop / One Hand One Heart",
+      characters: "Tony, Maria, Anita nearby",
+      status: "Not started",
+      purpose: "Tony and Maria create a private marriage ritual against the public conflict around them.",
+      needs: "Intimacy protocol, bridal shop symbolism, sacred simplicity, Anita timing.",
+      problems: "Do not sentimentalize away the danger; the scene is hopeful because it is impossible."
+    },
+    {
+      title: "Act I - Tonight Quintet",
+      characters: "Tony, Maria, Anita, Riff, Bernardo, Jets, Sharks",
+      status: "Not started",
+      purpose: "Layer incompatible expectations for the same night: love, fight, excitement, revenge, and anticipation.",
+      needs: "Precise musical entrances, staging separation, clean narrative stakes for each group.",
+      problems: "If one group dominates, the architecture collapses. Every strand needs a specific objective."
+    },
+    {
+      title: "Act I - Rumble under the Highway",
+      characters: "Tony, Riff, Bernardo, Chino nearby, Jets, Sharks",
+      status: "Not started",
+      purpose: "The attempt to stop violence fails; deaths of Riff and Bernardo turn rivalry into irreversible tragedy.",
+      needs: "Fight choreography, knife safety, highway shadows, police pressure, Tony's intervention, clear fatal beats.",
+      problems: "This scene requires rigorous safety and emotional preparation. No improvisation around weapons."
+    },
+    {
+      title: "Act II Scene 1 - Apartment / I Feel Pretty",
+      characters: "Maria, Consuelo, Rosalia, girls, Chino, Tony",
+      status: "Not started",
+      purpose: "Maria's joy collides with the news of Bernardo's death and Tony's guilt.",
+      needs: "Apartment/bedroom layout, comic innocence turning sharply, Chino entrance, Tony window entry.",
+      problems: "The tonal shift must be devastating but not abrupt in a sloppy way."
+    },
+    {
+      title: "Act II - Somewhere Ballet / Dream Sequence",
+      characters: "Tony, Maria, ensemble dream figures",
+      status: "Not started",
+      purpose: "Imagine a world beyond gang identity, then let reality fracture that hope.",
+      needs: "Dream movement language, scenic transformation, lighting separation, procession/nightmare sequence.",
+      problems: "Avoid making the dream vague. It should express exactly what the real world denies them."
+    },
+    {
+      title: "Act II Scene 2 - Back Alley / Gee Officer Krupke",
+      characters: "Jets, Action, A-Rab, Baby John, Snowboy, Anybodys, Krupke",
+      status: "Not started",
+      purpose: "Use satire to show how institutions label, pass, and fail these boys while danger continues outside.",
+      needs: "Comic timing, role-switching clarity, police pressure, Anybodys' information about Chino.",
+      problems: "Comedy must not erase the recent deaths; it should feel like coping and avoidance."
+    },
+    {
+      title: "Act II Scene 3 - Apartment / A Boy Like That / I Have a Love",
+      characters: "Maria, Anita, Schrank, Tony hidden/escaping",
+      status: "Not started",
+      purpose: "Anita confronts Maria with the cost of loving Tony; Maria answers with absolute emotional commitment.",
+      needs: "Locked room tension, Anita's grief, Maria's conviction, Schrank interruption, message to Doc.",
+      problems: "Both women must be right from their own wound. Do not stage Anita as merely harsh."
+    },
+    {
+      title: "Act II Scene 4 - Drugstore / Taunting Scene",
+      characters: "Anita, Jets, Doc, Action, A-Rab, Baby John, Anybodys",
+      status: "Not started",
+      purpose: "Anita's attempt to help is destroyed by abuse, creating the false message that sends Tony toward death.",
+      needs: "Strong intimacy/staged aggression protocol, boundaries, Doc entrance, Anita's exit, false message.",
+      problems: "Highest-care rehearsal. Must be terrifying and consequential without endangering or exploiting the actor."
+    },
+    {
+      title: "Act II Scene 5 - Cellar",
+      characters: "Tony, Doc",
+      status: "Not started",
+      purpose: "Tony receives the false report of Maria's death and abandons self-preservation.",
+      needs: "Cellar isolation, Doc's moral fury, Tony's collapse, transition into the street.",
+      problems: "The scene should feel like grief detonating, not melodrama."
+    },
+    {
+      title: "Act II Scene 6 - Neighborhood / Finale",
+      characters: "Tony, Maria, Chino, Jets, Sharks, Doc, adults",
+      status: "Not started",
+      purpose: "Tony is killed, Maria indicts the cycle of hatred, and the gangs finally carry the body together.",
+      needs: "Gun safety, final traffic, Maria's stillness and explosion, shared carrying image, shawl/body handling.",
+      problems: "No sentimental shortcut. The final unity must feel costly, not comforting."
+    }
+  ],
+  notes: [
+    ["Scene", "Prologue/Rumble", "Schedule fight captain work before choreography cleanup. Weapon timing and actor spacing are non-negotiable.", "Not given"],
+    ["Music", "Tonight Quintet", "Map every group objective before musical staging; the number is dramatic counterpoint, not only ensemble singing.", "Not given"],
+    ["Actor", "Tony", "Track the shift from ex-gang member to lover to desperate grieving man; each step needs a visible trigger.", "Not given"],
+    ["Actor", "Maria", "Protect her spine: innocence, choice, grief, and final authority. She cannot be played as only fragile.", "Not given"],
+    ["Actor", "Anita", "Her warmth, sexuality, grief, anger, and courage all need space. She is not a plot device.", "Not given"],
+    ["Tech", "Drugstore taunting scene", "Create a closed rehearsal protocol: consent boundaries, exact choreography, stop word, no surprise contact.", "Not given"],
+    ["Choreo", "Dance at the Gym", "Build social rules first: who watches, who challenges, who owns space, who crosses the line.", "Not given"]
+  ],
+  problems: [
+    ["Weapon and fight safety", "Tech Crew and Safety", "critical", "Fight captain / Stage manager", "Knives and gun must be rehearsed with strict protocol before run-throughs."],
+    ["Cultural and language care", "Script, Lyrics, Cuts, Dramaturgy", "critical", "Director / Dramaturg", "Prepare context notes and room agreements for ethnicity, migration, slurs, dialect, and stereotypes."],
+    ["Dance stamina and injury risk", "Choreography and Physical Storytelling", "high", "Choreographer", "Track warmups, footwear, flooring, lifts, and recovery across dance-heavy ensemble calls."],
+    ["Anita drugstore scene safety", "Acting and Discipline", "critical", "Director / Intimacy lead", "Stage exact behavior and emotional boundaries; no actor should be surprised by contact or language."],
+    ["Tone whiplash in Act II", "Concept and Audience", "high", "Director", "Plan transitions from comedy to grief so the audience does not lose the tragedy's pressure."],
+    ["Under-rehearsed ensemble traffic", "Set and Props", "high", "Stage manager", "Create traffic maps for neighborhood, gym, drugstore, rumble, and finale carrying sequence."]
+  ],
+  decisions: [
+    ["Use a stylized-realistic street world: emotionally truthful, physically heightened.", "Director", "Design, choreography, lighting, acting", "2026-06-12"],
+    ["Treat all violence, intimacy, and taunting as choreographed safety events.", "Director / Stage management", "Actors, fight, intimacy, tech", "2026-06-12"],
+    ["Use role slots with TBD actor names until real performers are entered.", "Production", "Casting and rehearsal counting", "2026-06-12"],
+    ["Keep red alerts only for safety, clashes, critical problems, and under-rehearsed actors.", "Production", "App use and production management", "2026-06-12"]
+  ],
+  runMaintenance: [
+    ["Brush-up need", "Prologue, Dance at the Gym, Rumble, and Finale should receive weekly spacing/safety brush-ups.", "2026-06-12"],
+    ["Vocal health", "Monitor Tony, Maria, Anita, Riff, Bernardo, and ensemble after heavy dance-and-sing days.", "2026-06-12"],
+    ["Timing drift", "Watch comic pacing in Krupke and emotional pacing in Act II so neither stretches out of proportion.", "2026-06-12"],
+    ["Prop/costume wear", "Inspect weapons, shoes, Maria/Anita costume pieces, shawl, and dance garments after each performance week.", "2026-06-12"]
+  ]
+};
+
 const defaultState = {
   checklist: {},
   events: [],
@@ -260,7 +533,8 @@ const defaultState = {
   techReadiness: {},
   decisions: [],
   runMaintenance: [],
-  survival: {}
+  survival: {},
+  meta: {}
 };
 
 const STORAGE_KEY = "aclanWorksMusicalApp.v2";
@@ -284,12 +558,86 @@ const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selec
 
 function loadState() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) return structuredClone(defaultState);
+  if (!raw) return applyWestSideStoryStarter(structuredClone(defaultState));
   try {
-    return { ...structuredClone(defaultState), ...JSON.parse(raw) };
+    return applyWestSideStoryStarter({ ...structuredClone(defaultState), ...JSON.parse(raw) });
   } catch {
-    return structuredClone(defaultState);
+    return applyWestSideStoryStarter(structuredClone(defaultState));
   }
+}
+
+function applyWestSideStoryStarter(currentState) {
+  if (currentState.meta?.[westSideStoryStarterPack.metaKey]) return currentState;
+
+  const nextState = { ...currentState, meta: { ...(currentState.meta || {}) } };
+  nextState.dailyDesk = {
+    ...structuredClone(defaultState.dailyDesk),
+    ...mergeTextDefaults(westSideStoryStarterPack.dailyDesk, currentState.dailyDesk || {})
+  };
+  nextState.creative = mergeTextDefaults(westSideStoryStarterPack.creative, currentState.creative || {});
+  nextState.survival = mergeTextDefaults(westSideStoryStarterPack.survival, currentState.survival || {});
+  nextState.techReadiness = { ...westSideStoryStarterPack.techReadiness, ...(currentState.techReadiness || {}) };
+
+  const existingRoles = new Set((currentState.actors || []).map((actor) => actor.role));
+  const starterActors = westSideStoryStarterPack.actors
+    .filter(([, role]) => !existingRoles.has(role))
+    .map(([name, role, tier, targetDays]) => ({
+      id: crypto.randomUUID(),
+      name,
+      role,
+      tier,
+      targetDays,
+      rehearsalCount: 0
+    }));
+  nextState.actors = [...(currentState.actors || []), ...starterActors];
+
+  nextState.scenes = [...(currentState.scenes || []), ...westSideStoryStarterPack.scenes.map((scene) => ({
+    id: crypto.randomUUID(),
+    readyForTech: false,
+    ...scene
+  }))];
+  nextState.notes = [...(currentState.notes || []), ...westSideStoryStarterPack.notes.map(([type, target, text, status]) => ({
+    id: crypto.randomUUID(),
+    type,
+    target,
+    text,
+    status,
+    created: new Date().toISOString().slice(0, 10)
+  }))];
+  nextState.problems = [...(currentState.problems || []), ...westSideStoryStarterPack.problems.map(([title, department, severity, owner, solution]) => ({
+    id: crypto.randomUUID(),
+    title,
+    department,
+    severity,
+    owner,
+    deadline: "",
+    solution,
+    status: "Open"
+  }))];
+  nextState.decisions = [...(currentState.decisions || []), ...westSideStoryStarterPack.decisions.map(([decision, approvedBy, affects, date]) => ({
+    id: crypto.randomUUID(),
+    decision,
+    approvedBy,
+    affects,
+    date
+  }))];
+  nextState.runMaintenance = [...(currentState.runMaintenance || []), ...westSideStoryStarterPack.runMaintenance.map(([type, note, date]) => ({
+    id: crypto.randomUUID(),
+    date,
+    type,
+    note
+  }))];
+  nextState.meta[westSideStoryStarterPack.metaKey] = true;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
+  return nextState;
+}
+
+function mergeTextDefaults(defaults, current) {
+  const merged = { ...defaults, ...current };
+  Object.entries(defaults).forEach(([key, value]) => {
+    if (!String(current[key] || "").trim()) merged[key] = value;
+  });
+  return merged;
 }
 
 function saveState() {
